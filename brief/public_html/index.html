@@ -31,6 +31,13 @@
         border-collapse: collapse;
         padding: 4px;
       }
+      
+      .db-table {
+        border: 1px solid;
+        display: inline-table;
+        padding: 5px;
+        margin-right: 10px;
+      }
     </style>
   </head>
   <body>
@@ -131,7 +138,52 @@
       </div>
 
       <div>
+        <h2>Database design</h2>
+        <div class="db-table">
+          <h4>Users</h4>
+          <ul>
+            <li>name</li>
+            <li>email</li>
+            <li>password hash</li>
+          </ul>
+          etc...
+        </div>
+        
+        <div class="db-table">
+          <h4>Items</h4>
+          <ul>
+            <li><strong>user</strong></li>
+            <li>name</li>
+            <li>content (BLOB)</li>
+            <li>date</li>
+            <li>price</li>
+            <li>no. downloads</li>
+          </ul>
+        </div>
+        
+        <div class="db-table">
+          <h4>Ratings</h4>
+          <ul>
+            <li><strong>user</strong></li>
+            <li><strong>item</strong></li>
+            <li>content</li>
+          </ul>
+        </div>
+        
+        <div class="db-table">
+          <h4>Comments</h4>
+          <ul>
+            <li><strong>user</strong></li>
+            <li><strong>item</strong></li>
+            <li>content</li>
+            <li>date</li>
+          </ul>
+        </div>
+      </div>
+        
+      <div>
         <h2>Site design</h2>
+        <img src="site_design.png">
       </div>
 
       <div>
