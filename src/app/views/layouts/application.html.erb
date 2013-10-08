@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag "bootstrap.min", "shared" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery-2.0.3.min", "bootstrap.min" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -36,7 +37,5 @@
     </div>
     <%= yield %>
   </div>
-  <%= #Include javascript
-    javascript_include_tag "jquery-2.0.3.min", "bootstrap.min" %>
 </body>
 </html>

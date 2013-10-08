@@ -1,3 +1,8 @@
-<%= form_for @template do |f| %>
+<!-- <%= form_for @template do |f| %>
   <%= f.file_field :picture %>
-<% end %>
+<% end %> -->
+
+<%= javascript_include_tag "jquery.filedrop", "new" %>
+<div id="dropbox">
+  <span class="message">Drop images here to upload. <br /><i>(they will only be visible to you)</i></span>
+</div>
