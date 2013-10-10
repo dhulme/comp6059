@@ -4,7 +4,7 @@ class TemplatesController < ApplicationController
   end
 
   
-  def create
+  def design
     logger.info @template
     # From http://guides.rubyonrails.org/form_helpers.html#uploading-files
     uploaded_io = params[:template][:picture]
