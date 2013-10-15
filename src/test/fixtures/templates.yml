@@ -1,7 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  title: MyString
+  creator: MyString
+  name: MyString
+  created: 2013-10-14
+  price: 
+  downloads: 
 
 two:
-  title: MyString
+  creator: MyString
+  name: MyString
+  created: 2013-10-14
+  price: 
+  downloads: 
