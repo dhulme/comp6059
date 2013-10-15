@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008152829) do
+ActiveRecord::Schema.define(version: 20131014194659) do
 
   create_table "templates", force: true do |t|
+    t.integer  "creator_id"
     t.string   "title"
+    t.text     "description"
+    t.decimal  "price"
+    t.integer  "downloads"
+    t.binary   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

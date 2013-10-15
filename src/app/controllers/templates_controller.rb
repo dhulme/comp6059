@@ -1,6 +1,6 @@
 class TemplatesController < ApplicationController
   def new
-   @template = Template.new
+    @template = Template.new
   end
 
   
