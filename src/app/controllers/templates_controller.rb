@@ -1,7 +1,22 @@
 class TemplatesController < ApplicationController
   def new
-    @template = Template.new
   end
+  
+  def create
+    @template = Template.new(template_params)
+    
+    @template.save
+    redirect_to @template
+  end
+  
+  def show
+    @template = Template.find(params[:id])
+  end
+  
+  private
+    def template_params
+      params.require(:template).permit(:title, :description)
+    end
 
   
   def design
