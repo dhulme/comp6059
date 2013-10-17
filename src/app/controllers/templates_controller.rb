@@ -2,7 +2,12 @@ class TemplatesController < ApplicationController
   require 'securerandom'
   
   def index
-    @templates = Template.all
+    @templates = Template.find(:all, order: 'category_id')
+    @categories = Category.all
+    
+    @categorised_templates = {
+      x: 'f'
+    }
   end
   
   def new
@@ -27,6 +32,18 @@ class TemplatesController < ApplicationController
     @template = Template.find(params[:id])
     @image_path = '/uploads/' +  @template.filename
     @category = Category.find(@template.category_id)
+  end
+  
+  def download
+    @template = Template.find(params[:id])
+    @template.increment(:downloads)
+    @template.save
+    
+    respond_to do |format|
+      format.json {
+        render :json => true
+      }
+    end
   end
   
   private

@@ -1,9 +1,15 @@
 <%= stylesheet_link_tag 'show' %>
+<%= javascript_include_tag 'show' %>
+<script>
+  var id = <%= @template.id %>;
+  var numDownloads = <%= @template.downloads %>;
+</script>
 <div class="pull-left">
   <h1><%= @template.title %></h1>
   <h4><%= @template.description %></h4>
-  <p id="category"><%= @category.name %></p>
-  <%= link_to('Download', @image_path, class: 'btn btn-default', id: 'downloadButton') %>
+  <p class="gray"><%= @category.name %><br>
+  <span id="numDownloadsSpan"></span></p>
+  <%= link_to('Download', @image_path, download: 'image.jpg', class: 'btn btn-default', id: 'downloadButton', remote: 'download') %>
 </div>
 
 <div class="pull-right">

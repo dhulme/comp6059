@@ -1,5 +1,39 @@
-<ul>
-<% @templates.each do |template| %>
-  <li><%= template.title %></li>
-<% end %>
-</ul>
+<%#*<ul>%>
+<%# @templates.each do |template| %>
+  <%#*<li><%= template.title %>
+<%# end %>
+<%#*</ul>%>
+
+<%= stylesheet_link_tag 'discover' %>
+<div class="row">
+  <div class="col-md-3">
+    <ul id="categoryList" class="nav nav-pills nav-stacked">
+      <% first = true %>
+      <% @categories.each do |category| %>
+        <% if first %>
+          <li class="active">
+          <% first = false %>
+        <% else %>
+          <li>
+        <% end %>
+          <a href="#">
+            <%= category.name %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <div>
+      <h3>Most popular</h3>
+    </div>
+    
+    <div>
+      <h3>Highly rated</h3>
+    </div>
+    
+    <div>
+      <h3>Newest</h3>
+    </div>
+  </div>
+</div>

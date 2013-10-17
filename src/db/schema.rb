@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20131017105207) do
     t.string   "title"
     t.text     "description"
     t.decimal  "price"
-    t.integer  "downloads"
+    t.integer  "downloads",   default: 0
     t.string   "filename"
     t.integer  "category_id"
     t.datetime "created_at"

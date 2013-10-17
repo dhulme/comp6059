@@ -5,7 +5,7 @@ class CreateTemplates < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.decimal :price
-      t.integer :downloads
+      t.integer :downloads, default: 0
       t.string :filename
       
       t.belongs_to :category

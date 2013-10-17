@@ -16,6 +16,7 @@ Src::Application.routes.draw do
   
   # Example resource route (maps HTTP verbs to controller actions automatically):
   get 'upload' => 'templates#new'
+  get 'download' => 'templates#download'
   resources :templates
 
   # Example resource route with options:
