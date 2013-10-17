@@ -4,6 +4,8 @@ class PagesController < ApplicationController
   end
   
   def setup_categories
+    Category.delete_all
+    
     categories = [Category.new(name: 'Logos'),
       Category.new(name: 'Posters')]
     
@@ -11,6 +13,6 @@ class PagesController < ApplicationController
       category.save
     end
     
-    render inline: 'Done'
+    render inline: '<h2>Added categories to database.</h2>'
   end
 end

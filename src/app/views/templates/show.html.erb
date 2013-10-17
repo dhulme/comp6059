@@ -2,6 +2,7 @@
 <div class="pull-left">
   <h1><%= @template.title %></h1>
   <h4><%= @template.description %></h4>
+  <p id="category"><%= @category.name %></p>
   <%= link_to('Download', @image_path, class: 'btn btn-default', id: 'downloadButton') %>
 </div>
 

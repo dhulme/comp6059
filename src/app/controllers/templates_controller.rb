@@ -9,7 +9,6 @@ class TemplatesController < ApplicationController
   end
   
   def create
-    logger.info template_params
     @template = Template.new(template_params)
     
     # Upload image file
@@ -27,10 +26,11 @@ class TemplatesController < ApplicationController
   def show
     @template = Template.find(params[:id])
     @image_path = '/uploads/' +  @template.filename
+    @category = Category.find(@template.category_id)
   end
   
   private
     def template_params
-      params.require(:template).permit(:title, :description)
+      params.require(:template).permit(:title, :description, :category_id)
     end
 end
