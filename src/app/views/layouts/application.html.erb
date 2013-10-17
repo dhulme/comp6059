@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
-  <title>Src</title>
+  <title>Easy Design | <%= @title  %></title>
   <%= stylesheet_link_tag "bootstrap.min", "shared" %>
   <%= javascript_include_tag "jquery-2.0.3.min", "bootstrap.min" %>
   <%= csrf_meta_tags %>
@@ -11,13 +11,23 @@
     <div id="header">
       <div class="navbar navbar-default">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Easy Design</a>
+          <a class="navbar-brand" href="/">Easy Design</a>
         </div>
 
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Discover", '#' %></li>
-            <li><%= link_to "Upload", '#' %></li>
+            <%
+              case @title
+                when 'Upload'
+                  upload_class = 'active'
+                when 'Home'
+                else
+                  discover_class = 'active'  
+              end
+            %>
+            
+            <li class="<%= discover_class %> "><%= link_to "Discover", '/discover' %></li>
+            <li class="<%= upload_class %>"><%= link_to "Upload", '/upload' %></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">

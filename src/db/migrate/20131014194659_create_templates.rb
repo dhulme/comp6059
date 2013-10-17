@@ -7,6 +7,8 @@ class CreateTemplates < ActiveRecord::Migration
       t.decimal :price
       t.integer :downloads
       t.string :filename
+      
+      t.belongs_to :category
 
       t.timestamps
     end

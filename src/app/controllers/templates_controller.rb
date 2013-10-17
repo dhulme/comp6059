@@ -1,10 +1,15 @@
 class TemplatesController < ApplicationController
   require 'securerandom'
   
+  def index
+    @templates = Template.all
+  end
+  
   def new
   end
   
   def create
+    logger.info template_params
     @template = Template.new(template_params)
     
     # Upload image file

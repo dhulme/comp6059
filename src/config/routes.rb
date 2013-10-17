@@ -1,10 +1,10 @@
 Src::Application.routes.draw do
-  get "discover/index"
+  get "pages/home"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'discover#index'
+  root 'pages#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'x
@@ -12,8 +12,10 @@ Src::Application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
+  get 'setup_categories' => 'pages#setup_categories'
+  
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  get 'templates/upload' => 'templates#new'
+  get 'upload' => 'templates#new'
   resources :templates
 
   # Example resource route with options:
