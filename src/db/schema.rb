@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20131014194659) do
     t.text     "description"
     t.decimal  "price"
     t.integer  "downloads"
-    t.binary   "image"
+    t.string   "filename"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

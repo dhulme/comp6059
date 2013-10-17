@@ -6,7 +6,7 @@ class CreateTemplates < ActiveRecord::Migration
       t.text :description
       t.decimal :price
       t.integer :downloads
-      t.binary :image
+      t.string :filename
 
       t.timestamps
     end
