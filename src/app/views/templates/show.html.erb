@@ -1,2 +1,11 @@
-<%= @template.title  %>
-<%= @template.description %>
+<%= stylesheet_link_tag 'show' %>
+<div class="pull-left">
+  <h1><%= @template.title %></h1>
+  <h4><%= @template.description %></h4>
+  <%= link_to('Download', @image_path, class: 'btn btn-default', id: 'downloadButton') %>
+</div>
+
+<div class="pull-right">
+  <%= image_tag(@image_path,
+    alt: @template.title, height: '300', id: 'previewImage') %>
+</div>

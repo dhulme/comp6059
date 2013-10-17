@@ -21,6 +21,7 @@ class TemplatesController < ApplicationController
   
   def show
     @template = Template.find(params[:id])
+    @image_path = '/uploads/' +  @template.filename
   end
   
   private
