@@ -2,12 +2,26 @@ class TemplatesController < ApplicationController
   require 'securerandom'
   
   def index
-    @templates = Template.find(:all, order: 'category_id')
-    @categories = Category.all
+    @popular = {}
+    @newest = {}
+    Category.all.each do |category|
+      @popular[category.id] = []
+      @newest[category.id] = []
+    end
     
-    @categorised_templates = {
-      x: 'f'
-    }
+    # Most popular
+    Template.order('downloads DESC').limit(3).each do |template|
+      @popular[template.category_id] << template
+    end
+    
+    # Highly rated
+    
+    # Newest
+    Template.order('created_at DESC').limit(3).each do |template|
+      @newest[template.category_id] << template
+    end
+    
+    @categories = Category.all
   end
   
   def new

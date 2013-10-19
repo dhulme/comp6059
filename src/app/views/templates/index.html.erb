@@ -5,17 +5,13 @@
 <%#*</ul>%>
 
 <%= stylesheet_link_tag 'discover' %>
+<%= javascript_include_tag 'index' %>
 <div class="row">
   <div class="col-md-3">
     <ul id="categoryList" class="nav nav-pills nav-stacked">
       <% first = true %>
       <% @categories.each do |category| %>
-        <% if first %>
-          <li class="active">
-          <% first = false %>
-        <% else %>
-          <li>
-        <% end %>
+        <li class="categories" data-category-id="<%= category.id %>">
           <a href="#">
             <%= category.name %>
           </a>
@@ -24,16 +20,25 @@
     </ul>
   </div>
   <div class="col-md-9">
-    <div>
-      <h3>Most popular</h3>
-    </div>
-    
-    <div>
-      <h3>Highly rated</h3>
-    </div>
-    
-    <div>
-      <h3>Newest</h3>
-    </div>
+    <% @categories.each do |category| %>
+      <div class="categories hidden" data-category-id="<%= category.id %>">
+        <div>
+          <h3>Most popular</h3>
+          <ul>
+          <% @popular[category.id].each do |template| %>
+            <li><%= template.title %></li>
+          <% end %>    
+          </ul>
+        </div>
+        
+        <div>
+          <h3>Highly rated</h3>
+        </div>
+
+        <div>
+          <h3>Newest</h3>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
