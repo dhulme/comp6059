@@ -26,7 +26,18 @@
           <h3>Most popular</h3>
           <ul>
           <% @popular[category.id].each do |template| %>
-            <li><%= template.title %></li>
+            <div class="media">
+              <%= link_to(template, class: 'pull-left') do %>
+                <%= image_tag(template.image_path, class: 'media-object',
+                  alt: template.title, width: '100') %>
+              <% end %>
+              <div class="media-body">
+                <%= link_to(template) do %>
+                  <h4 class="media-heading"><%= template.title %></h4>
+                <% end %>
+                <p><%= template.description %></p>
+              </div>
+            </div>
           <% end %>    
           </ul>
         </div>
