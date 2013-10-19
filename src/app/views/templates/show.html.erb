@@ -8,7 +8,7 @@
   <h1><%= @template.title %></h1>
   <h4><%= @template.description %></h4>
   <p class="gray"><%= @category.name %><br>
-  <span id="numDownloadsSpan"></span></p>
+  <span id="numDownloadsSpan"><%= @template.downloads_text %></span></p>
   <%= link_to('Download', @image_path, download: 'image.jpg', class: 'btn btn-default', id: 'downloadButton', remote: 'download') %>
 </div>
 

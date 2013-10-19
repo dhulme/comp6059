@@ -35,7 +35,8 @@
                 <%= link_to(template) do %>
                   <h4 class="media-heading"><%= template.title %></h4>
                 <% end %>
-                <p><%= template.description %></p>
+                <p><%= template.description %><br>
+                  <span class="gray" id="numDownloadsSpan"><%= template.downloads_text %></span></p>
               </div>
             </div>
           <% end %>    
