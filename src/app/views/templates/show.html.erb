@@ -4,12 +4,30 @@
   var id = <%= @template.id %>;
   var numDownloads = <%= @template.downloads %>;
 </script>
+
 <div class="pull-left">
-  <h1><%= @template.title %></h1>
-  <h4><%= @template.description %></h4>
-  <p class="gray"><%= @category.name %><br>
-  <span id="numDownloadsSpan"><%= @template.downloads_text %></span></p>
-  <%= link_to('Download', @image_path, download: 'image.jpg', class: 'btn btn-default', id: 'downloadButton', remote: 'download') %>
+  <div>
+    <h1><%= @template.title %></h1>
+    <h4><%= @template.description %></h4>
+    <p class="gray"><%= @category.name %><br>
+    <span id="numDownloadsSpan"><%= @template.downloads_text %></span></p>
+    <%= link_to('Download', @image_path, download: 'image.jpg', class: 'btn btn-default', id: 'downloadButton', remote: 'download') %>
+  </div>
+  
+  <div id="reviews">
+    <h4>Reviews</h4>
+    <blockquote>
+      <p>Hi there</p>
+      <div>
+        <span class="glyphicon glyphicon-star"></span>
+        <span class="glyphicon glyphicon-star"></span>
+        <span class="glyphicon glyphicon-star"></span>
+        <span class="glyphicon glyphicon-star-empty"></span>
+        <span class="glyphicon glyphicon-star-empty"></span>
+      </div>
+      <small>Davey, at 12pm</small>
+    </blockquote>
+  </div>
 </div>
 
 <div class="pull-right">

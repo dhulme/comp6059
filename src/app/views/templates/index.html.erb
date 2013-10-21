@@ -24,7 +24,6 @@
       <div class="categories hidden" data-category-id="<%= category.id %>">
         <div>
           <h3>Most popular</h3>
-          <ul>
           <% @popular[category.id].each do |template| %>
             <div class="media">
               <%= link_to(template, class: 'pull-left') do %>
@@ -36,11 +35,10 @@
                   <h4 class="media-heading"><%= template.title %></h4>
                 <% end %>
                 <p><%= template.description %><br>
-                  <span class="gray" id="numDownloadsSpan"><%= template.downloads_text %></span></p>
+                  <span class="gray"><%= template.downloads_text %></span></p>
               </div>
             </div>
           <% end %>    
-          </ul>
         </div>
         
         <div>
@@ -49,6 +47,21 @@
 
         <div>
           <h3>Newest</h3>
+          <% @newest[category.id].each do |template| %>
+            <div class="media">
+              <%= link_to(template, class: 'pull-left') do %>
+                <%= image_tag(template.image_path, class: 'media-object',
+                  alt: template.title, width: '100') %>
+              <% end %>
+              <div class="media-body">
+                <%= link_to(template) do %>
+                  <h4 class="media-heading"><%= template.title %></h4>
+                <% end %>
+                <p><%= template.description %><br>
+                  <span class="gray"><%= template.created_at_pretty %></span></p>
+              </div>
+            </div>
+          <% end %>    
         </div>
       </div>
     <% end %>

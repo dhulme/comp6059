@@ -16,4 +16,8 @@ class Template < ActiveRecord::Base
       end
     end
   end
+  
+  def created_at_pretty
+    self.created_at.to_formatted_s(:short)
+  end
 end
