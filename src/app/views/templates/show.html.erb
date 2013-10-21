@@ -14,19 +14,30 @@
     <%= link_to('Download', @image_path, download: 'image.jpg', class: 'btn btn-default', id: 'downloadButton', remote: 'download') %>
   </div>
   
-  <div id="reviews">
+  <div id="reviewsSection">
     <h4>Reviews</h4>
-    <blockquote>
-      <p>Hi there</p>
-      <div>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
+    <button id="addReviewButton" class="btn btn-default">Add review</button>
+    <div id="addReviewDiv" class="hidden">
+      <div class="form-group stars">
+
       </div>
-      <small>Davey, at 12pm</small>
-    </blockquote>
+      <textarea class="form-group form-control" placeholder="Enter review here"></textarea>
+      <button id="createReivewButton" class="btn btn-default">Add review</button>
+    </div>
+    
+    <div id="reviews">
+      <blockquote>
+        <p>Hi there</p>
+        <div>
+          <span class="glyphicon glyphicon-star"></span>
+          <span class="glyphicon glyphicon-star"></span>
+          <span class="glyphicon glyphicon-star"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+        </div>
+        <small>Davey, at 12pm</small>
+      </blockquote>
+    </div>
   </div>
 </div>
 

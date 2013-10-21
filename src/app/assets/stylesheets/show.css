@@ -6,6 +6,26 @@
   margin-top: 10px;
 }
 
-#reviews {
+#reviewsSection {
   margin-top: 40px;
+}
+
+#addReviewDiv {
+  margin-bottom: 10px;
+}
+
+#reviews {
+  margin-top: 20px;
+}
+
+.stars {
+  font-size: 17px;
+}
+
+.star {
+  margin-right: 3px;
+}
+
+.star:hover {
+  cursor: pointer;
 }

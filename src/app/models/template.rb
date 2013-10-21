@@ -1,5 +1,6 @@
 class Template < ActiveRecord::Base
   has_one :category
+  has_many :reviews
   
   def image_path
     '/uploads/' + self.filename
