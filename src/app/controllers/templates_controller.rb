@@ -4,7 +4,7 @@ class TemplatesController < ApplicationController
   def index
     @popular = {}
     @newest = {}
-    Category.all.each do |category|
+    Category.each do |category|
       @popular[category.id] = []
       @newest[category.id] = []
     end
@@ -45,6 +45,7 @@ class TemplatesController < ApplicationController
   def show
     @template = Template.find(params[:id])
     @category = Category.find(@template.category_id)
+    @reviews = Review.where('id = ?', params[:id])
   end
   
   def download

@@ -1,4 +1,11 @@
 $(function() {
+  var csrfToken = $("meta[name='csrf-token']").attr("content");
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': csrfToken
+  }
+});
+  
   // Download button
   $('#downloadButton').click(function(){
     $.get('/download', {
@@ -32,12 +39,22 @@ $(function() {
           $(star).addClass('glyphicon-star');
         }
       });
-      $(this).parent().data('star-total', 'star-number');
+      $(this).parent().data('star-total', starNumber + 1);
     });
   });
   
   // Create review button
   $('#createReviewButton').click(function() {
-    console.log($(this).siblings('.stars').data('star-number'))
-  })
+    var starTotal = $(this).siblings('.stars').data('star-total');
+    $.post('/reviews', {
+      review: {
+        rating: starTotal,
+      comment: 'my comment',
+      template_id: id
+      }
+      
+    }, function() {
+      console.log('done')
+    });
+  });
 });
