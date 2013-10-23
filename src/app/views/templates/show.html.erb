@@ -21,22 +21,20 @@
       <div class="form-group stars">
 
       </div>
-      <textarea class="form-group form-control" placeholder="Enter review here"></textarea>
+      <textarea id="commentTextarea" class="form-group form-control" placeholder="Enter review here"></textarea>
       <button id="createReviewButton" class="btn btn-default">Add review</button>
     </div>
     
     <div id="reviews">
-      <blockquote>
-        <p>Hi there</p>
-        <div>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star-empty"></span>
-          <span class="glyphicon glyphicon-star-empty"></span>
-        </div>
-        <small>Davey, at 12pm</small>
-      </blockquote>
+      <% @reviews.each do |review| %>
+        <blockquote>
+          <p><%= review.comment %></p>
+          <div>
+            <%=raw review.stars_html %>
+          </div>
+          <small>AUTHOR, <%= review.created_at_pretty %></small>
+        </blockquote>
+      <% end %>
     </div>
   </div>
 </div>

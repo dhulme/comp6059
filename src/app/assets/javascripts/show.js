@@ -1,10 +1,29 @@
 $(function() {
-  var csrfToken = $("meta[name='csrf-token']").attr("content");
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-Token': csrfToken
-  }
-});
+  // CSRF setup
+  // http://stackoverflow.com/questions/7203304/warning-cant-verify-csrf-token-authenticity-rails
+  var csrfToken = $('meta[name="csrf-token"]').prop('content');
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': csrfToken
+    }
+  });
+  
+  // Extend Date
+  // http://stackoverflow.com/questions/1643320/get-month-name-from-date-using-javascript
+  Date.prototype.monthNames = [
+    "January", "February", "March",
+    "April", "May", "June",
+    "July", "August", "September",
+    "October", "November", "December"
+  ];
+
+  Date.prototype.getMonthName = function() {
+    return this.monthNames[this.getMonth()];
+  };
+  Date.prototype.getShortMonthName = function () {
+    return this.getMonthName().substr(0, 3);
+  };
+
   
   // Download button
   $('#downloadButton').click(function(){
@@ -49,12 +68,34 @@ $.ajaxSetup({
     $.post('/reviews', {
       review: {
         rating: starTotal,
-      comment: 'my comment',
-      template_id: id
+        comment: $('#commentTextarea').val(),
+        template_id: id
       }
+    }, function(res) {
+      // Hide create section
+      $('#addReviewDiv').addClass('hidden');
       
-    }, function() {
-      console.log('done')
+      // Generate stars HTML
+      var starsHTML = '<div>';
+      for (var i = 0; i < 5; i++) {
+        if (i < res.rating) {
+          starsHTML += '<span class="glyphicon glyphicon-star"></span>';
+        } else {
+          starsHTML += '<span class="glyphicon glyphicon-star-empty"></span>';
+        }
+      }
+      starsHTML += '</div>';
+      
+      // Generate time HTML
+      var date = new Date();
+      var timeHTML = date.getDate() + ' ' + date.getShortMonthName() + ' '
+        + date.getHours() + ':' + date.getMinutes();
+      
+      // Add review HTML
+      var html = '<blockquote><p>' + res.comment + '</p>' + starsHTML
+        + '<small>AUTHOR, at ' + timeHTML + '</small></blockquote>';
+
+      $('#reviews').prepend(html);
     });
   });
 });
