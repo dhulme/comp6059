@@ -19,13 +19,11 @@ class TemplatesController < ApplicationController
     # Highly rated
     
     # We should be able to do a nicer join...
-    Template.joins(:reviews).order('rating DESC').limit(3).each do |template|
+    Template.joins(:reviews).order('rating DESC').limit(3).distinct.each do |template|
     #Template.find_by_sql('SELECT templates.*, reviews.rating FROM templates, reviews
     #  WHERE templates.id = reviews.template_id
     #  ORDER BY reviews.rating DESC
     #  LIMIT 3').each do |template|
-      #puts template.inspect
-      puts template.reviews
       @rated[template.category_id] << template
     end
     
