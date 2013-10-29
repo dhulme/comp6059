@@ -8,6 +8,8 @@ gem 'rails', '4.0.0'
 gem 'mysql2'
 
 gem 'thinking-sphinx', '~> 3.0.2'
+gem 'devise'
+gem 'bcrypt-ruby', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
