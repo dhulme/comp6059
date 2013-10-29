@@ -1,5 +1,6 @@
 class TemplatesController < ApplicationController
   require 'securerandom'
+  respond_to :html, :json
   
   def index
     @popular = {}
@@ -65,11 +66,13 @@ class TemplatesController < ApplicationController
     @template.increment(:downloads)
     @template.save
     
-    respond_to do |format|
-      format.json {
-        render :json => true
-      }
-    end
+    respond_with true
+  end
+  
+  def search
+    @templates = Template.search params[:term]
+    
+    respond_with @templates
   end
   
   private

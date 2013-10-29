@@ -1,17 +1,12 @@
-<%#*<ul>%>
-<%# @templates.each do |template| %>
-  <%#*<li><%= template.title %>
-<%# end %>
-<%#*</ul>%>
-
 <%= stylesheet_link_tag 'discover' %>
 <%= javascript_include_tag 'index' %>
 <div class="row">
   <div class="col-md-3">
+    <input id="searchInput" class="form-control" type="text" placeholder="Search">
     <ul id="categoryList" class="nav nav-pills nav-stacked">
       <% first = true %>
       <% @categories.each do |category| %>
-        <li class="categories" data-category-id="<%= category.id %>">
+        <li class="category" data-category-id="<%= category.id %>">
           <a href="#">
             <%= category.name %>
           </a>
@@ -19,11 +14,12 @@
       <% end %>
     </ul>
   </div>
+  
   <div class="col-md-9">
     <% @categories.each do |category| %>
-      <div class="categories hidden" data-category-id="<%= category.id %>">
+      <div class="category hidden" data-category-id="<%= category.id %>">
         <div>
-          <h3>Most popular</h3>
+          <h3 style="margin-top: 0;">Most popular</h3>
           <% @popular[category.id].each do |template| %>
             <div class="media">
               <%= link_to(template, class: 'pull-left') do %>
@@ -80,5 +76,12 @@
         </div>
       </div>
     <% end %>
+    
+    <div id="searchResultsDiv" class="category hidden">
+      <h3 style="margin-top: 0;">Search results</h3>
+      <div id="searchResults">
+        
+      </div>
+    </div>
   </div>
 </div>

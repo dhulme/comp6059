@@ -3,12 +3,14 @@ Src::Application.routes.draw do
   root 'pages#home'
   
   get 'setup_categories' => 'pages#setup_categories'
+  get 'create_categories' => 'pages#setup_categories'
   
   # Templates
   resources :templates
   get 'upload' => 'templates#new'
   get 'download' => 'templates#download'
   get 'discover' => 'templates#index'
+  get 'search' => 'templates#search'
   
   # Reviews
   resources :reviews

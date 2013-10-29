@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20131021084225) do
     t.integer  "creator_id"
     t.string   "title"
     t.text     "description"
-    t.decimal  "price"
-    t.integer  "downloads",   default: 0
+    t.decimal  "price",       precision: 10, scale: 0
+    t.integer  "downloads",                            default: 0
     t.string   "filename"
     t.integer  "category_id"
     t.datetime "created_at"
