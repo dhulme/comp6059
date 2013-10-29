@@ -35,7 +35,10 @@ function search(term) {
     templates.forEach(function(template) {
       html += generateMediaHTML(template);
     });
+    
     $('#searchResults').html(html);
+    $('#resultsForSpan').html(term);
+    
     $('div.category').addClass('hidden');
     $('#searchResultsDiv').removeClass('hidden');
   });
