@@ -5,3 +5,16 @@ body {
 .gray {
   color: #888;
 }
+
+#signinButton {
+  margin: 8px;
+}
+
+.user-auth-form {
+  width: 40%;
+  margin: auto;
+}
+
+#userAuthLinks {
+  margin-top: 10px;
+}

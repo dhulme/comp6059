@@ -3,7 +3,7 @@
 <head>
   <title>Easy Design | <%= @title  %></title>
   <%= stylesheet_link_tag "bootstrap.min", "shared" %>
-  <%= javascript_include_tag "jquery-2.0.3.min", "bootstrap.min", "shared" %>
+  <%= javascript_include_tag "jquery-2.0.3.min", "bootstrap.min", "shared", "jquery_ujs" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -31,20 +31,24 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dave Hulme <i class="caret"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Settings</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Logout</a></li>
-              </ul>
-            </li>
+            <% if user_signed_in? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dave Hulme <i class="caret"></i></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Settings</a></li>
+                  <li class="divider"></li>
+                  <li><%= link_to('Sign out', destroy_user_session_path, method: :delete) %></li>
+                </ul>
+              </li>
+            <% else %>
+              <%= link_to('Sign in', new_user_session_path, class: 'btn btn-default', id: 'signinButton') %>
+            <% end %>
           </ul>
         </div>
       </div>
     </div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <p><%= notice %></p>
+    <p><%= alert %></p>
     <%= yield %>
   </div>
 </body>
