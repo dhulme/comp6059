@@ -9,12 +9,14 @@ Src::Application.routes.draw do
   # Templates
   resources :templates
   get 'upload' => 'templates#new'
-  post 'download' => 'templates#download'
   get 'discover' => 'templates#index'
   get 'search' => 'templates#search'
   
   # Reviews
   resources :reviews
+  
+  # Download
+  resources :downloads
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

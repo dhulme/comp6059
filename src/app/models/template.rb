@@ -9,15 +9,21 @@ class Template < ActiveRecord::Base
   end
   
   def downloads_text
-    if self.downloads > 1
-      self.downloads.to_s + ' downloads'
+    num_downloads = downloads
+    
+    if num_downloads > 1
+      num_downloads.to_s + ' downloads'
     else
-      if self.downloads == 1
+      if num_downloads == 1
         '1 download'
       else
         'No downloads'
       end
     end
+  end
+  
+  def downloads
+    Download.where(template_id: self.id).select(:user_id).distinct.count
   end
   
   def created_at_pretty

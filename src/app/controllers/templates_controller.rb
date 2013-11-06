@@ -65,14 +65,6 @@ class TemplatesController < ApplicationController
     @reviews = Review.where('template_id = ?', params[:id]).order('created_at DESC')
   end
   
-  def download
-    @template = Template.find(params[:id])
-    @template.increment(:downloads)
-    @template.save
-    
-    respond_with true
-  end
-  
   def search
     @templates = Template.search params[:term]
     

@@ -18,11 +18,15 @@ $(function() {
   
   // Download button
   $('#downloadButton').click(function(){
-    $.post('/download', {
-      id: id
-    }, function() {
-      numDownloads++;
-      $('#numDownloadsSpan').html(getDownloadsText(numDownloads));
+    $.post('/downloads', {
+      templateId: id
+    }, function(increaseCounter) {
+      if (increaseCounter) {
+        numDownloads++;
+        $('#numDownloadsSpan').html(getDownloadsText(numDownloads));
+      } else {
+        
+      }
     });
   });
   
