@@ -43,6 +43,9 @@ class TemplatesController < ApplicationController
   def create
     @template = Template.new(template_params)
     
+    # Set creator
+    @template.user = current_user
+    
     # Upload image file
     # From http://guides.rubyonrails.org/form_helpers.html#uploading-files
     uploaded_io = params[:template][:image]
@@ -58,6 +61,7 @@ class TemplatesController < ApplicationController
   def show
     @template = Template.find(params[:id])
     @category = Category.find(@template.category_id)
+    @creator = User.find(@template.user_id)
     @reviews = Review.where('template_id = ?', params[:id]).order('created_at DESC')
   end
   

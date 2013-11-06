@@ -9,7 +9,7 @@ Src::Application.routes.draw do
   # Templates
   resources :templates
   get 'upload' => 'templates#new'
-  get 'download' => 'templates#download'
+  post 'download' => 'templates#download'
   get 'discover' => 'templates#index'
   get 'search' => 'templates#search'
   

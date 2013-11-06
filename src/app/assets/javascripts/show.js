@@ -18,7 +18,7 @@ $(function() {
   
   // Download button
   $('#downloadButton').click(function(){
-    $.get('/download', {
+    $.post('/download', {
       id: id
     }, function() {
       numDownloads++;

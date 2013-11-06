@@ -29,13 +29,13 @@ ActiveRecord::Schema.define(version: 20131029132630) do
   end
 
   create_table "templates", force: true do |t|
-    t.integer  "creator_id"
     t.string   "title"
     t.text     "description"
     t.decimal  "price",       precision: 10, scale: 0
     t.integer  "downloads",                            default: 0
     t.string   "filename"
     t.integer  "category_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
