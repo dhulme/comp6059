@@ -1,3 +1,4 @@
+<% @title = 'Sign up' %>
 <div class="user-auth-form">
   <h2>Sign up</h2>
 
@@ -6,6 +7,12 @@
 
     <div class="form-group"><%= f.label :email %><br />
     <%= f.email_field :email, :autofocus => true, class: 'form-control' %></div>
+  
+    <div class="form-group"><%= f.label :first_name %><br />
+    <%= f.text_field :first_name, class: 'form-control' %></div>
+  
+    <div class="form-group"><%= f.label :last_name %><br />
+    <%= f.text_field :last_name, class: 'form-control' %></div>
 
     <div class="form-group"><%= f.label :password %><br />
     <%= f.password_field :password, class: 'form-control' %></div>

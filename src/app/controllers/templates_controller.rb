@@ -37,7 +37,7 @@ class TemplatesController < ApplicationController
   end
   
   def new
-    before_filter :authenticate_user!
+    #before_filter :authenticate_user!
   end
   
   def create
