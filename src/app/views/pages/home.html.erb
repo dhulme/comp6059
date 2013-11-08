@@ -5,28 +5,22 @@
   <h1>Hello.</h1>
 <% end %>
 
-<h3 class="discover-section-header">Looking for something?</h3>
+<h3>Looking for something?</h3>
 <input class="form-control" type="text" placeholder="Search">
 <h5>Not sure what you're looking for? <a href="/discover">Browse the catalogue</a>.</h5>
 
-<h3 class="discover-section-header">Recommended for you</h3>
-<div class="discover-example media">
-  <a class="pull-left" href="#">
-    <img class="media-object" src="img/example.png">
-  </a>
-  <div class="media-body">
-    <h4 class="media-heading">Example 1</h4>
-    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+<h3>Recommended for you</h3>
+<% @recommended.each do |template| %>
+  <div class="media">
+    <%= link_to(template, class: 'pull-left') do %>
+      <%= image_tag(template.image_path, class: 'media-object',
+        alt: template.title, width: '100') %>
+    <% end %>
+    <div class="media-body">
+      <%= link_to(template) do %>
+        <h4 class="media-heading"><%= template.title %></h4>
+      <% end %>
+      <p><%= template.description %></p>
+    </div>
   </div>
-</div>
-
-<h3 class="discover-section-header">What's hot</h3>
-<div class="discover-example media">
-  <a class="pull-left" href="#">
-    <img class="media-object" src="img/example.png">
-  </a>
-  <div class="media-body">
-    <h4 class="media-heading">Example 2</h4>
-    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-  </div>
-</div>
+<% end %>
