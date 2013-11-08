@@ -13,18 +13,13 @@ class TemplatesController < ApplicationController
     end
     
     # Most popular
-    Template.order('downloads DESC').limit(3).each do |template|
+    Download.select('template_id, count(distinct user_id) as downloads_count').group('template_id').order('downloads_count DESC').each do |download|
+      template = Template.find(download.template_id)
       @popular[template.category_id] << template
     end
     
     # Highly rated
-    
-    # We should be able to do a nicer join...
     Template.joins(:reviews).order('rating DESC').limit(3).distinct.each do |template|
-    #Template.find_by_sql('SELECT templates.*, reviews.rating FROM templates, reviews
-    #  WHERE templates.id = reviews.template_id
-    #  ORDER BY reviews.rating DESC
-    #  LIMIT 3').each do |template|
       @rated[template.category_id] << template
     end
     

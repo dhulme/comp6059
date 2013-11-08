@@ -1,6 +1,7 @@
 class Template < ActiveRecord::Base
   has_one :category
   has_many :reviews
+  has_many :downloads
   
   belongs_to :user
   
