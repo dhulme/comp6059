@@ -6,7 +6,9 @@
 <% end %>
 
 <h3>Looking for something?</h3>
-<input class="form-control" type="text" placeholder="Search">
+<form action="/templates" method="GET">
+  <input class="form-control" type="text" name="search" placeholder="Search">
+</form>
 <h5>Not sure what you're looking for? <a href="/discover">Browse the catalogue</a>.</h5>
 
 <h3>Recommended for you</h3>

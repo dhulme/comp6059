@@ -89,3 +89,12 @@
     </div>
   </div>
 </div>
+
+<% # Do auto search if given query string %>
+<% if @search %>
+  <script>
+    $(function() {
+      search("<%= @search %>");
+    });
+  </script>
+<% end %>

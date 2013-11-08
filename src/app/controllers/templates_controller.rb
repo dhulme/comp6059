@@ -3,6 +3,9 @@ class TemplatesController < ApplicationController
   respond_to :html, :json
   
   def index
+    # Pass through search string
+    @search = params[:search]
+    
     @popular = {}
     @rated = {}
     @newest = {}
