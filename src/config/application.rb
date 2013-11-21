@@ -20,6 +20,10 @@ module Src
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     
+    Rails.configuration.preview_size = '300x300'
+    Rails.configuration.preview_extension = '-preview'
+    
     Rails.configuration.thumbnail_size = '100x100'
+    Rails.configuration.thumbnail_extension = '-thumb'
   end
 end

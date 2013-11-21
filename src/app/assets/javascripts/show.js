@@ -24,8 +24,6 @@ $(function() {
       if (increaseCounter) {
         numDownloads++;
         $('#numDownloadsSpan').html(getDownloadsText(numDownloads));
-      } else {
-        
       }
     });
   });

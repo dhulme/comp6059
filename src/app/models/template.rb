@@ -9,6 +9,14 @@ class Template < ActiveRecord::Base
     '/uploads/' + self.filename
   end
   
+  def preview_path
+    '/uploads/' + self.filename + Rails.configuration.preview_extension
+  end
+  
+  def thumbnail_path
+    '/uploads/' + self.filename + Rails.configuration.thumbnail_extension
+  end
+  
   def downloads_text
     num_downloads = downloads
     

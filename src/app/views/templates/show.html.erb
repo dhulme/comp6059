@@ -17,7 +17,7 @@
     
     <span class="gray" id="numDownloadsSpan"><%= @template.downloads_text %></span><br>
     
-    <%= link_to('Download', @template.image_path, download: 'image.jpg', class: 'btn btn-default', id: 'downloadButton', remote: 'download') %>
+    <%= link_to('Download', @template.image_path, download: 'image.jpg', class: 'btn btn-default', id: 'downloadButton') %>
   </div>
   
   <div id="reviewsSection">
@@ -46,6 +46,6 @@
 </div>
 
 <div class="pull-right">
-  <%= image_tag(@template.image_path,
+  <%= image_tag(@template.preview_path,
     alt: @template.title, height: '300', id: 'previewImage') %>
 </div>
