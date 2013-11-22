@@ -67,6 +67,26 @@ class TemplatesController < ApplicationController
     @reviews = Review.where('template_id = ?', params[:id]).order('created_at DESC')
   end
   
+  def update
+    # Only update if admin
+    if current_user.admin?
+      @template = Template.find(params[:id])
+
+      if @template.update(template_params)
+        render status: 200, json: @template.to_json
+      end
+    end
+  end
+  
+  def destroy
+    # Only delete if admin
+    if current_user.admin?
+      @template = Template.find(params[:id]).destroy
+      
+      render status: 200, json: true
+    end
+  end
+  
   def search
     @templates = Template.search params[:term]
     

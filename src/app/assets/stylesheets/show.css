@@ -2,7 +2,7 @@
   margin-top: 20px;
 }
 
-#downloadButton {
+#downloadButton, #editButton, #deleteButton {
   margin-top: 10px;
 }
 

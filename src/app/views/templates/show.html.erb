@@ -8,8 +8,8 @@
 
 <div class="pull-left">
   <div>
-    <h1><%= @template.title %></h1>
-    <h4><%= @template.description %></h4>
+    <h1 id="templateTitle"><%= @template.title %></h1>
+    <h4 id="templateDescription"><%= @template.description %></h4>
     <p class="gray">
       <%= @creator.full_name %><br>
       <%= @category.name %><br>
@@ -18,6 +18,11 @@
     <span class="gray" id="numDownloadsSpan"><%= @template.downloads_text %></span><br>
     
     <%= link_to('Download', @template.image_path, download: 'image.jpg', class: 'btn btn-default', id: 'downloadButton') %>
+    
+    <% if current_user.admin? %>
+      <br><button class="btn btn-primary" id="editButton">Edit template</button>
+      <br><button class="btn btn-danger" id="deleteButton">Delete template</button>
+    <% end %>
   </div>
   
   <div id="reviewsSection">

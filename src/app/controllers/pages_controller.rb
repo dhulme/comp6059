@@ -2,13 +2,15 @@ class PagesController < ApplicationController
   def home
     # Recommended
     @recommended = []
-    # Get users downloads
-    Download.where(user_id: current_user.id).each do |download|
-      # Other users who've downloaded that template
-      Download.where('template_id = ? AND user_id != ?', download.template_id, download.user_id) do |download|
-        # Get what the other users downloaded
-        Download.where(user_id: download.user_id) do |download|
-          @recommended << Template.find(download.template_id)
+    if user_signed_in?
+      # Get users downloads
+      Download.where(user_id: current_user.id).each do |download|
+        # Other users who've downloaded that template
+        Download.where('template_id = ? AND user_id != ?', download.template_id, download.user_id) do |download|
+          # Get what the other users downloaded
+          Download.where(user_id: download.user_id) do |download|
+            @recommended << Template.find(download.template_id)
+          end
         end
       end
     end

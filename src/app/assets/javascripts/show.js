@@ -91,4 +91,50 @@ $(function() {
       $('#reviews').prepend(html);
     });
   });
+  
+  // Edit button
+  $('#editButton').click(function() {
+    var templateTitleElement = $('#templateTitle');
+    var templateDescriptionElement = $('#templateDescription');
+    var editButtonElement = $('#editButton');
+    
+    if (editButtonElement.text() === 'Edit template') {
+      // Edit mode
+      // Replace with controls
+      templateTitleElement.html('<input type="text" value="' + templateTitleElement.text() + '">');
+      templateDescriptionElement.html('<input type="text" value="' + templateDescriptionElement.text() + '">');
+
+      editButtonElement.text('Save template');
+    } else {
+      // Save mode
+      $.ajax({
+        url: window.location.pathname,
+        method: 'PUT',
+        data: {
+          template: {
+            title: templateTitleElement.find('input').val(),
+            description: templateDescriptionElement.find('input').val()
+          }
+        }
+      }).done(function(res) {
+        templateTitleElement.text(res.title);
+        templateDescriptionElement.text(res.description);
+        editButtonElement.text('Edit template');
+      });
+    }
+  });
+  
+  // Delete button
+  $('#deleteButton').click(function() {
+    bootbox.confirm('Are you sure you want to delete this template?', function(res) {
+      if (res) {
+        $.ajax({
+          url: window.location.pathname,
+          method: 'DELETE'
+        }).done(function() {
+          window.location.pathname = '/templates';
+        });
+      }
+    });
+  });
 });
