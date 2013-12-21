@@ -2,12 +2,6 @@ $(function() {
   var categoryButtons = $('li.category');
   var categoryPanes = $('div.category');
   
-  // Highlight first category
-  categoryButtons.first().addClass('active');
-  
-  // Show matching pane
-  categoryPanes.first().removeClass('hidden');
-  
   categoryButtons.click(function() {
     categoryButtons.removeClass('active');
     $(this).addClass('active');
@@ -16,6 +10,19 @@ $(function() {
     categoryPanes.addClass('hidden');
     categoryPanes.filter('[data-category-id="' + id + '"]').removeClass('hidden');
   });
+  
+  // Highlight first category with content
+  var firstPaneWithContent;
+  categoryPanes.each(function() {
+    if ($(this).find('.media').length > 0) {
+      firstPaneWithContent = $(this);
+      return false;
+    }
+  });
+  categoryButtons.filter('[data-category-id="' + firstPaneWithContent.data('categoryId') + '"]').addClass('active');
+  
+  // Show matching pane
+  categoryPanes.filter('[data-category-id="' + firstPaneWithContent.data('categoryId') + '"]').removeClass('hidden');
   
   // Search event
   $('#searchInput').keypress(function(e) {
