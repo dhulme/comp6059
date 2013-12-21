@@ -93,6 +93,19 @@ class TemplatesController < ApplicationController
     respond_with @templates
   end
   
+  # From http://stackoverflow.com/questions/3951235/how-do-i-make-an-rss-atom-feed-in-rails-3
+  def feed
+    @title = 'Templates'
+    @templates = Template.order('created_at DESC')
+    @updated = @templates.first.created_at unless @templates.empty?
+    
+    respond_to do |format|
+      format.atom { render :layout => false}
+      
+      format.rss { redirect_to feed_path(:format => :atom), :status => :moved_permanently }
+    end
+  end
+  
   private
     def template_params
       params.require(:template).permit(:title, :description, :category_id)

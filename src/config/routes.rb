@@ -11,6 +11,7 @@ Src::Application.routes.draw do
   get 'upload' => 'templates#new'
   get 'discover' => 'templates#index'
   get 'search' => 'templates#search'
+  get 'feed' => 'templates#feed', :defaults => { :format => 'atom' }
   
   # Reviews
   resources :reviews
