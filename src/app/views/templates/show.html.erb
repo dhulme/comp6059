@@ -33,7 +33,10 @@
 
       </div>
       <textarea id="commentTextarea" class="form-group form-control" placeholder="Enter review here"></textarea>
-      <button id="createReviewButton" class="btn btn-default">Add review</button>
+      <%= @template.has_user_reviewed? current_user %>
+      <% if @template.has_user_reviewed?(current_user) %>
+        <button id="createReviewButton" class="btn btn-default">Add review</button>
+      <% end %>
     </div>
     
     <div id="reviews">

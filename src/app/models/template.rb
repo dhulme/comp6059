@@ -31,6 +31,11 @@ class Template < ActiveRecord::Base
     end
   end
   
+  def has_user_reviewed?(user)
+    puts 'hey'
+    Review.where(template_id: self.id, user_id: user.id).exists?
+  end
+  
   def downloads
     Download.where(template_id: self.id).select(:user_id).distinct.count
   end
