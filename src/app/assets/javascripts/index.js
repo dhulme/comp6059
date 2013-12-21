@@ -12,17 +12,24 @@ $(function() {
   });
   
   // Highlight first category with content
-  var firstPaneWithContent;
+  var firstPaneWithContent = null;
   categoryPanes.each(function() {
     if ($(this).find('.media').length > 0) {
       firstPaneWithContent = $(this);
       return false;
     }
   });
-  categoryButtons.filter('[data-category-id="' + firstPaneWithContent.data('categoryId') + '"]').addClass('active');
   
-  // Show matching pane
-  categoryPanes.filter('[data-category-id="' + firstPaneWithContent.data('categoryId') + '"]').removeClass('hidden');
+  // If none had content, show the first one
+  if (!firstPaneWithContent) {
+    categoryButtons.first().addClass('active');
+    categoryPanes.first().removeClass('hidden');
+  } else {
+    categoryButtons.filter('[data-category-id="' + firstPaneWithContent.data('categoryId') + '"]').addClass('active');
+
+    // Show matching pane
+    categoryPanes.filter('[data-category-id="' + firstPaneWithContent.data('categoryId') + '"]').removeClass('hidden');
+  }
   
   // Search event
   $('#searchInput').keypress(function(e) {

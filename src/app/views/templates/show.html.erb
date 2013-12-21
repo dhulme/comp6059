@@ -43,7 +43,14 @@
           <div>
             <%=raw review.stars_html %>
           </div>
-          <small>AUTHOR, <%= review.created_at_pretty %></small>
+          <small>
+          
+          <% if current_user == review.user %>
+            You
+          <% else %>
+            <%= review.user.full_name %>
+          <% end %>
+          , <%= review.created_at_pretty %></small>
         </blockquote>
       <% end %>
     </div>

@@ -1,5 +1,6 @@
 class Review < ActiveRecord::Base
   has_one :template
+  belongs_to :user
   
   def created_at_pretty
     self.created_at.to_formatted_s(:short)
