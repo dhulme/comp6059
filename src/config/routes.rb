@@ -15,8 +15,11 @@ Src::Application.routes.draw do
   # Reviews
   resources :reviews
   
-  # Download
+  # Downloads
   resources :downloads
+  
+  # Categories
+  resources :categories
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

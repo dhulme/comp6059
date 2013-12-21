@@ -21,12 +21,17 @@
                 when 'Upload'
                   upload_class = 'active'
                 when 'Discover'
-                  discover_class = 'active'  
+                  discover_class = 'active'
+                when 'Categories'
+                  categories_class = 'active'
               end
             %>
             
             <li class="<%= discover_class %> "><%= link_to "Discover", '/discover' %></li>
             <li class="<%= upload_class %>"><%= link_to "Upload", '/upload' %></li>
+            <% if user_signed_in? and current_user.admin? %>
+              <li class="<%= categories_class %>"><%= link_to "Categories", '/categories' %></li>
+            <% end %>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
