@@ -21,6 +21,10 @@
       <div class="category hidden" data-category-id="<%= category.id %>">
         <div>
           <h3 style="margin-top: 0;">Most popular</h3>
+          <% if @popular[category.id].empty? %>
+            <span class="gray">No-one has downloaded anything yet :(</span>
+          <% end %>
+          
           <% @popular[category.id].each do |template| %>
             <div class="media">
               <%= link_to(template, class: 'pull-left') do %>
@@ -40,6 +44,10 @@
         
         <div>
           <h3>Highly rated</h3>
+          <% if @rated[category.id].empty? %>
+            <span class="gray">No-one has reviewed anything yet :(</span>
+          <% end %>
+            
           <% @rated[category.id].each do |template| %>
             <div class="media">
               <%= link_to(template, class: 'pull-left') do %>
@@ -52,7 +60,7 @@
                 <% end %>
                 <p>
                   <%= template.description %><br>
-                  <span class="gray"><%= template.reviews.first.rating %></span>
+                  <span class="gray"><%=raw Review.first.stars_html template.average_rating %></span>
                 </p>
               </div>
             </div>
@@ -61,6 +69,10 @@
 
         <div>
           <h3>Newest</h3>
+          <% if @newest[category.id].empty? %>
+            <span class="gray">No-one has uploaded any templates yet :(</span>
+          <% end %>
+          
           <% @newest[category.id].each do |template| %>
             <div class="media">
               <%= link_to(template, class: 'pull-left') do %>

@@ -6,10 +6,10 @@ class Review < ActiveRecord::Base
     self.created_at.to_formatted_s(:short)
   end
   
-  def stars_html
+  def stars_html(rating = self.rating)
     html = ''
     for i in 0..4
-      if i < self.rating
+      if i < rating
         html += '<span class="glyphicon glyphicon-star"></span>'
       else
         html += '<span class="glyphicon glyphicon-star-empty"></span>'

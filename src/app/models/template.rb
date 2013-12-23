@@ -40,6 +40,17 @@ class Template < ActiveRecord::Base
     Download.where(template_id: self.id).select(:user_id).distinct.count
   end
   
+  def average_rating
+    reviews = Review.where(template_id: self.id)
+    ratings_sum = 0
+    
+    reviews.each do |review|
+      ratings_sum += review.rating
+    end
+    
+    ratings_sum / reviews.length
+  end
+  
   def created_at_pretty
     self.created_at.to_formatted_s(:short)
   end
