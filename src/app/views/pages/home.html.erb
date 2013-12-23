@@ -13,6 +13,10 @@
 
 <% if user_signed_in? %>
   <h3>Recommended for you</h3>
+  <% if @recommended.empty? %>
+    <span class="gray">You don't currently have any recommendations :(</span>
+  <% end %>
+  
   <% @recommended.each do |template| %>
     <div class="media">
       <%= link_to(template, class: 'pull-left') do %>
