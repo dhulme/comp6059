@@ -1,4 +1,3 @@
-<%= stylesheet_link_tag 'show' %>
 <%= javascript_include_tag 'show' %>
 <% @title = @template.title %>
 <script>
@@ -19,7 +18,7 @@
     
     <%= link_to('Download', @template.image_path, download: 'image.jpg', class: 'btn btn-default', id: 'downloadButton') %>
     
-    <% if current_user.admin? %>
+    <% if user_signed_in? and current_user.admin? %>
       <br><button class="btn btn-primary" id="editButton">Edit template</button>
       <br><button class="btn btn-danger" id="deleteButton">Delete template</button>
     <% end %>
@@ -27,14 +26,16 @@
   
   <div id="reviewsSection">
     <h4>Reviews</h4>
-    <%# Disable add review button if user has already reviewed %>
-    <% if @template.has_user_reviewed? current_user %>
-      <% add_review_disabled = 'disabled' %>
-    <% else %>
-      <% add_review_disabled = '' %>
+    <% if user_signed_in? %>
+      <%# Disable add review button if user has already reviewed %>
+      <% if @template.has_user_reviewed? current_user %>
+        <% add_review_disabled = 'disabled' %>
+      <% else %>
+        <% add_review_disabled = '' %>
+      <% end %>
+
+      <button id="addReviewButton" class="btn btn-default" <%= add_review_disabled %>>Add review</button>
     <% end %>
-    
-    <button id="addReviewButton" class="btn btn-default" <%= add_review_disabled %>>Add review</button>
       
     <div id="addReviewDiv" class="hidden">
       <div class="form-group stars">

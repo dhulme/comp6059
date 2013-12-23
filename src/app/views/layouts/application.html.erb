@@ -2,7 +2,7 @@
 <html>
 <head>
   <title><%= @title %></title>
-  <%= stylesheet_link_tag "bootstrap.min", "shared" %>
+  <%= stylesheet_link_tag 'bootstrap.min', 'shared', 'index', 'show' %>
   <%= javascript_include_tag "jquery-2.0.3.min", "bootstrap.min", "bootbox.min.js", "shared", "jquery_ujs" %>
   <%= csrf_meta_tags %>
 </head>
@@ -28,7 +28,9 @@
             %>
             
             <li class="<%= discover_class %> "><%= link_to "Discover", '/discover' %></li>
-            <li class="<%= upload_class %>"><%= link_to "Upload", '/upload' %></li>
+            <% if user_signed_in? %>
+              <li class="<%= upload_class %>"><%= link_to "Upload", '/upload' %></li>
+            <% end %>
             <% if user_signed_in? and current_user.admin? %>
               <li class="<%= categories_class %>"><%= link_to "Categories", '/categories' %></li>
             <% end %>
@@ -50,7 +52,7 @@
                 </ul>
               </li>
             <% else %>
-              <%= link_to('Sign in', new_user_session_path, class: 'btn btn-default', id: 'signinButton') %>
+              <li><%= link_to('Sign in', new_user_session_path, class: 'btn btn-default', id: 'signinButton') %></li>
             <% end %>
           </ul>
         </div>

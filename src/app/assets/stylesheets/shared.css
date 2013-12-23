@@ -8,6 +8,8 @@ body {
 
 #signinButton {
   margin: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .user-auth-form {
@@ -17,4 +19,8 @@ body {
 
 #userAuthLinks {
   margin-top: 10px;
+}
+
+.edit-category-button:hover {
+  cursor: pointer;
 }

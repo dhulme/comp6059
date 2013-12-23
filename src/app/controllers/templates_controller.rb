@@ -2,6 +2,9 @@ class TemplatesController < ApplicationController
   require 'securerandom'
   respond_to :html, :json
   
+  before_filter :authenticate_user!,
+    :only => [:new, :create, :update, :destroy]
+  
   def index
     # Pass through search string
     @search = params[:search]
@@ -35,7 +38,7 @@ class TemplatesController < ApplicationController
   end
   
   def new
-    #before_filter :authenticate_user!
+    
   end
   
   def create
