@@ -2,6 +2,12 @@ class ReviewsController < ApplicationController
   respond_to :json
   
   def create
+    # Check user hasn't already reviewed the template
+    @template = Template.find(params[:template_id])
+    if @template.has_user_reviewed? current_user
+      return
+    end
+    
     @review = Review.new(review_params)
     
     @review.user = current_user

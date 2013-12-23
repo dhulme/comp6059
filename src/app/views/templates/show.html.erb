@@ -27,16 +27,20 @@
   
   <div id="reviewsSection">
     <h4>Reviews</h4>
-    <button id="addReviewButton" class="btn btn-default">Add review</button>
+    <%# Disable add review button if user has already reviewed %>
+    <% if @template.has_user_reviewed? current_user %>
+      <% add_review_disabled = 'disabled' %>
+    <% else %>
+      <% add_review_disabled = '' %>
+    <% end %>
+    
+    <button id="addReviewButton" class="btn btn-default" <%= add_review_disabled %>>Add review</button>
+      
     <div id="addReviewDiv" class="hidden">
       <div class="form-group stars">
-
       </div>
       <textarea id="commentTextarea" class="form-group form-control" placeholder="Enter review here"></textarea>
-      <%= @template.has_user_reviewed? current_user %>
-      <% if @template.has_user_reviewed?(current_user) %>
-        <button id="createReviewButton" class="btn btn-default">Add review</button>
-      <% end %>
+      <button id="createReviewButton" class="btn btn-default">Add review</button>
     </div>
     
     <div id="reviews">
