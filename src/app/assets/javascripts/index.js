@@ -54,15 +54,20 @@ function search(term) {
     $('#resultsForSpan').html(term);
     
     $('div.category').addClass('hidden');
+    $('li.category').removeClass('active');
     $('#searchResultsDiv').removeClass('hidden');
   });
 }
 
 function generateMediaHTML(template) {
+  var createdAt = new Date(template.created_at);
+  var timeHTML = createdAt.getDate() + ' ' + createdAt.getShortMonthName() + ' '
+        + createdAt.getHours() + ':' + createdAt.getMinutes();
+
   return '<div class="media">'
     + '<a class="pull-left" href="/templates/' + template.id + '">'
     + '<img alt="' + template.title + '" class="media-object" src="/uploads/' + template.filename + '" width="100">'
     + '</a><div class="media-body"><a href="/templates/' + template.id + '">'
     + '<h4 class="media-heading">' + template.title + '</h4></a>'
-    + '<p>' + template.description + '<br><span class="gray">' + template.created_at + '</span></p></div></div>';
+    + '<p>' + template.description + '<br><span class="gray">' + timeHTML + '</span></p></div></div>';
 }
