@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <div id="container">
+      <div id="header" class="content">
+        <h1>Easy Design: Technical Manual</h1>
+        <h3>David Hulme - dh7g10@soton.ac.uk</h3>
+      </div>
+
+      <div id="design" class="content">
+        <h2>Architecture and Design</h2>
+        
+        <h3>Entity Relationship Diagram</h3>
+        <p>An Entity Relationship Diagram is shown below based on the final
+          schema of the database. It shows the different tables in the database
+          and their foreign key relations.</p>
+        <img src="erd.png" alt="Entity Relationship Diagram">
+        
+        <h3>System Structure</h3>
+        <p>The system is structured using the Model–view–controller (MVC) software
+          pattern. The diagram below shows the different MVC components.</p>
+        <img src="structure.png" alt="System Structure">
+      </div>
+
+      <div class="content">
+        <h2>Implemented Features</h2>
+        <p>Below are a list of features that have been implemented in Easy Design,
+          along with a brief explanation and accompanying evidence.</p>
+        
+        <h3>Product catalogue</h3>
+        <blockquote>
+          <p>Items (eg products) are stored in a dynamic and editable hierarchy, 
+            which can easily be browsed and searched</p>
+        </blockquote>
+        
+        <p>Each template in the database is assigned a category. Users can browse
+          templates by category, or search for a template by name or description.</p>
+        
+        <p>Searching is provided using <a href="http://pat.github.io/thinking-sphinx/">Thinking Sphinx</a>,
+          a Ruby library that connects to the <a href="http://sphinxsearch.com/">Sphinx</a>
+          search server.</p>
+        
+        <p>Thinking Sphinx provides a <code>search</code> method that can be used
+          on the database models. An indexing file, <code>/app/indices/template_index.rb</code> (shown below), is required so
+          Sphinx knows what properties of the models to index.</p>
+        
+        <pre>
+ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class="symbol">:with</span> => <span class="symbol">:active_record</span> <span class="keyword">do</span>
+  <span class="comment"># Fields</span>
+  <strong>indexes</strong> title, <span class="symbol">:sortable</span> => <span class="keyword">true</span>
+  <strong>indexes</strong> description
+  
+  <span class="comment"># Attributes</span>
+  <strong>has</strong> created_at, updated_at
+<span class="keyword">end</span>
+        </pre>
+          
+          
+        <p>Administrators can add or edit categories by visiting <code>/categories</code>.
+          The code snippet below shows the <code>create</code> method in
+          <code>/app/controllers/categories_controller.rb</code>.</p>
+        
+        <pre>
+<span class="keyword">def</span> create
+  <span class="instance-var">@category</span> = <strong>Category</strong>.new(category_params)
+  <span class="instance-var">@category</span>.save
+
+  <strong>redirect_to</strong> '/categories'
+<span class="keyword">end</span>
+        </pre>
+        
+        
+        <h3>Recommendation System</h3>
+        <blockquote>
+          <p>a personalised dynamic recommender system</p>
+        </blockquote>
+        
+        <p>Easy Design provides a recommendation system for users. A list of
+          possible recommendations are shown on the home page. The algorithm
+          works in three steps:</p>
+        
+        <ol>
+          <li>Get all templates the user has downloaded</li>
+          <li>For each template, get other users who have downloaded that template</li>
+          <li>For each of these users, get all other templates they have downloaded</li>
+          <li>Recommend those templates to the user</li>
+        </ol>
+        
+        <p>The full source for the algorithm can be found in the <code>home</code>
+          method in <code>/app/controllers/pages_controller.rb</code>.</p>
+          
+        
+        
+        <h3>Item management</h3>
+        <blockquote>
+          <p>Display and update work items involving multiple users and roles</p>
+        </blockquote>
+        
+        <p>A list of all templates can be found through <code>/discover</code> or
+          <code>/templates</code>. Individual templates can then be viewed through
+          the <code>/templates/{template_id}</code> endpoint. Administrators can
+          update or delete a template using the provided buttons.</p>
+        
+        <figure>
+          <img src="edit-template.png" alt="Edit template screenshot" class="full-width">
+          <figcaption>Screenshot showing a template being edited by an admin</figcaption>
+        </figure>
+      </div>
+
+      <div class="content">
+        <h2>Tools, Technologies and Techniques</h2>
+      </div>
+    </div>
+  </body>
+</html>
