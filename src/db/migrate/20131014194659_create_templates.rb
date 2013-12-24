@@ -3,7 +3,6 @@ class CreateTemplates < ActiveRecord::Migration
     create_table :templates do |t|
       t.string :title
       t.text :description
-      t.decimal :price
       t.string :filename
       
       t.references :category
