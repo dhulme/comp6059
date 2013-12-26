@@ -10,9 +10,55 @@
   </head>
   <body>
     <div id="container">
-      <div id="header" class="content">
+      <div class="header">
         <h1>Easy Design: Technical Manual</h1>
         <h3>David Hulme - dh7g10@soton.ac.uk</h3>
+        
+        <p>This technical manual will cover the system architecture of Easy Design,
+         explain which features from the specification have been implemented,
+         and the tools, technologies and techniques that have been used throughout
+         development.</p>
+      </div>
+      
+      <div id="contents" class="header">
+        <h2>Contents</h2>
+      </div>
+      
+      <div class="content">
+        <h2>Overview</h2>
+        <h3>Introduction</h3>
+        <p>Easy Design is a new startup company launching a service to enable
+          customers such as charities and organisations to quickly produce well
+          designed logos, posters and flyers based on user generated content.</p>
+
+        <p>The site will make money through advertising.</p>
+      
+        <h3>Implemented User Stories</h3>
+        <h4>1. Upload content</h4>
+        <p>Content creators upload their created design templates to the site. They
+          must first register with the site before being able to upload content.</p>
+        
+        <h4>2. Browsing content</h4>
+        <p>Customers can search and browse the site to discover the content
+          they are looking for. They can browse by content type (e.g. logos, posters, flyers)
+          or by search term.</p>
+        <p>Newly uploaded templates, those with a high number of downloads
+          and those with high ratings will be displayed on the home page.</p>
+        
+        <h4>3. Downloading content</h4>
+        <p>When a customer finds a design they like, they can download a high quality
+          version of the design which they can then edit before printing out or
+          uploading to their own web site.</p>
+        <p>A customer must register with the site to be able to download the design.</p>
+        
+        <h4>4. Reviewing content</h4>
+        <p>When a customer has downloaded a design, they gain permission to rate
+          and review it. The system can then recommend additional
+          content to customer based upon this information.</p>
+        
+        <h4>5. System Management</h4>
+        <p>Administrators are able to do additional actions to normal users. They
+          can edit and delete templates as well as add and edit categories.</p>
       </div>
 
       <div class="content">
@@ -304,6 +350,43 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
         <p>First bit not done.</p>
         
         <p>All HTML and CSS pages were validated through the <a href="http://validator.w3.org/">W3C Markup Validation Service</a>.</p>
+        
+        
+        
+        <h3>Architectural Patterns</h3>
+        <blockquote>
+          <p>Clear separation of layers or tiers (eg MVC); maintainable code. Enterprise / web architecture patterns.</p>
+        </blockquote>
+        
+        <p>Through using Rails, the Model-view-controller (MVC) software pattern was used. I strove
+          to write well-designed code that would be readable, extensible and
+          maintainable.</p>
+        
+        
+        <h3>Advanced Web Controls</h3>
+        <blockquote>
+          <p>Web controls or widgets eg rich text editor.</p>
+          <p>Automated validation of entered data.</p>
+        </blockquote>
+        
+        <p>Not currently implemented.</p>
+        
+        <h3>User authentication</h3>
+        <blockquote>
+          <p>Sessions or cookies. Secure access, authentication, roles.</p>
+        </blockquote>
+        
+        <p><a href="https://github.com/plataformatec/devise">devise</a> was used
+          to handle sessions and user authentication. An <code>admin</code> field
+          was added to the User model to store if the user was an administrator.</p>
+        
+        <h3>Data Integrity</h3>
+        <blockquote>
+          <p>Data integrity and consistency. Database constraints, triggers, referential integrity, prepared statements, transactions. BLOBs. Database exception handling.</p>
+        </blockquote>
+        
+        <p>Active Record maintained data integrity and managed all interactions
+          with the database.</p>
       </div>
       
       <div class="content">

@@ -11,7 +11,7 @@ body {
   padding: 2%;
 }
 
-.content {
+.content, .header {
   padding: 2%;
   color: rgb(51, 51, 51);
   background-color: #ffffff;
@@ -108,4 +108,17 @@ figure img {
 figure {
   padding: 5px;
   margin: 10px;
+}
+
+.contents-list {
+  list-style: none;
+}
+
+.contents-list a {
+  color: #666;
+  text-decoration: none;
+}
+
+.contents-list a:hover {
+  text-decoration: underline;
 }

@@ -2,7 +2,7 @@ $(function() {
   var structure = [];
   
   // Create structure
-  $('h2').each(function() {
+  $('.content h2').each(function() {
     var el = $(this);
     
     // Create id
@@ -28,10 +28,10 @@ $(function() {
   });
   
   // Generate HTML
-  var html = '<ul>';
+  var html = '<ul class="contents-list">';
   structure.forEach(function(item) {
     html += '<li><a href="#' + item.id + '">' + item.title + '</a>' +
-            '<ul>';
+            '<ul class="contents-list">';
     item.children.forEach(function(item) {
       html += '<li><a href="#' + item.id + '">' + item.title + '</a></li>';
     });
@@ -40,5 +40,5 @@ $(function() {
   });
   html += '</ul>';
   
-  $('#header').append(html);
+  $('#contents').append(html);
 });
