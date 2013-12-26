@@ -7,6 +7,7 @@ $(function() {
       if (increaseCounter) {
         numDownloads++;
         $('#numDownloadsSpan').html(getDownloadsText(numDownloads));
+        $('#addReviewButton').prop('disabled', false);
       }
     });
   });

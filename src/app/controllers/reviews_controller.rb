@@ -2,9 +2,9 @@ class ReviewsController < ApplicationController
   respond_to :json
   
   def create
-    # Check user hasn't already reviewed the template
+    # Check user hasn't already reviewed the template, or not downloaded it
     @template = Template.find(params[:template_id])
-    if @template.has_user_reviewed? current_user
+    if @template.has_user_reviewed? current_user or !@template.has_user_downloaded? current_user
       return
     end
     

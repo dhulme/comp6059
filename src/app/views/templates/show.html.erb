@@ -27,8 +27,9 @@
   <div id="reviewsSection">
     <h4>Reviews</h4>
     <% if user_signed_in? %>
-      <%# Disable add review button if user has already reviewed %>
-      <% if @template.has_user_reviewed? current_user %>
+      <%# Disable add review button if user has already reviewed, or they have not
+        downloaded the template %>
+      <% if @template.has_user_reviewed? current_user or !@template.has_user_downloaded? current_user %>
         <% add_review_disabled = 'disabled' %>
       <% else %>
         <% add_review_disabled = '' %>

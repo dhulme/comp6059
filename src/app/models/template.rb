@@ -31,9 +31,12 @@ class Template < ActiveRecord::Base
     end
   end
   
-  def has_user_reviewed?(user)
-    puts 'hey'
+  def has_user_reviewed? user
     Review.where(template_id: self.id, user_id: user.id).exists?
+  end
+  
+  def has_user_downloaded? user
+    Download.where(template_id: self.id, user_id: user.id).exists?
   end
   
   def downloads
