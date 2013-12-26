@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>Easy Design - Technical Manual</title>
     <link rel="stylesheet" href="style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
@@ -32,7 +32,7 @@
         <p>Below are a list of features that have been implemented in Easy Design,
           along with a brief explanation and accompanying evidence.</p>
         
-        <h3>Product catalogue</h3>
+        <h3>Template catalogue</h3>
         <blockquote>
           <p>Items (eg products) are stored in a dynamic and editable hierarchy, 
             which can easily be browsed and searched</p>
@@ -96,7 +96,7 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
           
         
         
-        <h3>Item management</h3>
+        <h3>Template management</h3>
         <blockquote>
           <p>Display and update work items involving multiple users and roles</p>
         </blockquote>
@@ -108,8 +108,111 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
         
         <figure>
           <img src="edit-template.png" alt="Edit template screenshot" class="full-width">
-          <figcaption>Screenshot showing a template being edited by an admin</figcaption>
+          <figcaption>Screenshot showing a template being edited by an administrator</figcaption>
         </figure>
+        
+        
+        <h3>Review System</h3>
+        <blockquote>
+          <p>Users can post comments or messages to selected roles, view them, rate, filter and sort them appropriately.</p>
+        </blockquote>
+        
+        <p>Users can review a template and give it a rating. They are only able
+          to post one review per template.</p>
+        
+        <p>The <code>create</code> review method from <code>/app/controllers/reviews_controller.rb</code>
+          is shown below.</p>
+        
+        <pre>
+<span class="keyword">def</span> create
+  <span class="comment"># Check user hasn't already reviewed the template</span>
+  <span class="instance-var">@template</span> = <strong>Template</strong>.find(params[<span class="symbol">:template_id</span>])
+  <span class="keyword">if</span> <span class="instance-var">@template</span>.has_user_reviewed? current_user
+    <span class="keyword">return</span>
+  <span class="keyword">end</span>
+
+  <span class="instance-var">@review</span> = <strong>Review</strong>.new(review_params)
+  <span class="instance-var">@review</span>.user = current_user
+  <span class="instance-var">@review</span>.save
+
+  <strong>respond_with</strong> <span class="instance-var">@review</span>
+<span class="keyword">end</span>
+        </pre>
+        
+        
+        
+        
+        <h3>Template Image Generation</h3>
+        <blockquote>
+          <p>Dynamic generation of images (eg visualisation of business objects or statistics) and multimedia manipulation (eg scaling or compression).</p>
+        </blockquote>
+        
+        <p>For each template image uploaded to Easy Design, the system generates
+          a preview image and a smaller thumbnail image. The preview image is shown
+          on the template page (e.g. <code>/templates/1</code>) and the thumbnail
+          is shown on the discover page. The size of the generated images can be
+          set in <code>/config/application.rb</code>.</p>
+        
+        <p>The system uses <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a>
+          to generate the preview and thumbnail images. The snippet from
+          the <code>create</code> method in <code>/app/controllers/templates_controller.rb</code>
+          below shows the image generation code.</p>
+        
+        <pre>
+<span class="comment"># Upload image file
+# From http://guides.rubyonrails.org/form_helpers.html#uploading-files</span>
+uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol">:image</span>]
+<span class="instance-var">@template</span>.filename = SecureRandom.uuid
+<strong>File</strong>.open(Rails.root.join('public', 'uploads', <span class="instance-var">@template</span>.filename), 'wb') <span class="keyword">do</span> |file|
+  <span class="comment"># Create full size file, preview and thumbnail versions</span>
+  file.write(uploaded_io.read)
+  <strong>system</strong> "convert #{file.path} -resize #{Rails.configuration.preview_size} #{file.path}#{Rails.configuration.preview_extension}"
+  <strong>system</strong> "convert #{file.path} -resize #{Rails.configuration.thumbnail_size} #{file.path}#{Rails.configuration.thumbnail_extension}"
+<span class="keyword">end</span>
+        </pre>
+      
+
+        <h3>Data Import</h3>
+        <blockquote>
+          <p>Inclusion of live data from external sources (eg other web sites) via protocols such as RSS, using XML formatted data</p>
+        </blockquote>
+        <p>Not currently implemented</p>
+
+        <h3>Data Export</h3>
+        <blockquote>
+          <p>Export of internally stored business data for use in external sites, using XML formatted data.</p>
+        </blockquote>
+
+        <p>Easy Design has a public ATOM feed of all the templates in the system.
+          This would allow other developers to make use of the templates uploaded
+          to Easy Design and include them as part of their own web applications.</p>
+        
+        <p>The <code>feed</code> method from <code>/app/controllers/templates_controller.rb</code>,
+          shown below, demonstrates this.</p>
+        
+        <pre>
+<span class="comment"># From http://stackoverflow.com/questions/3951235/how-do-i-make-an-rss-atom-feed-in-rails-3</span>
+<span class="keyword">def</span> feed
+  <span class="instance-var">@title</span> = 'Templates'
+  <span class="instance-var">@templates</span> = <strong>Template</strong>.order('created_at DESC')
+  <span class="instance-var">@updated</span> = <span class="instance-var">@templates</span>.first.created_at <span class="keyword">unless</span> <span class="instance-var">@templates</span>.empty?
+
+  <strong>respond_to</strong> <span class="keyword">do</span> |format|
+    format.atom { <strong>render</strong> <span class="symbol">:layout</span> => <span class="keyword">false</span>}
+
+    format.rss { <strong>redirect_to</strong> feed_path(<span class="symbol">:format</span> => <span class="symbol">:atom</span>), <span class="symbol">:status</span> => <span class="symbol">:moved_permanently</span> }
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+        </pre>
+          
+        
+        <h3>Professional Feel</h3>
+        <blockquote>
+          <p>Professional appearance with logo, master pages, style sheets, site menus, breadcrumbs, login status and multi-part forms.</p>
+        </blockquote>
+        <p><a href="http://getbootstrap.com/">Twitter Bootstrap</a> has been used
+          throughout the site to give a consistent and professional look and feel.
+          Individual stylesheets 
       </div>
 
       <div class="content">
