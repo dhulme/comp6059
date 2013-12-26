@@ -52,7 +52,7 @@ class TemplatesController < ApplicationController
     uploaded_io = params[:template][:image]
     @template.filename = SecureRandom.uuid
     File.open(Rails.root.join('public', 'uploads', @template.filename), 'wb') do |file|
-      # Create full size file, preview and thumnail versions
+      # Create full size file, preview and thumbnail versions
       file.write(uploaded_io.read)
       system "convert #{file.path} -resize #{Rails.configuration.preview_size} #{file.path}#{Rails.configuration.preview_extension}"
       system "convert #{file.path} -resize #{Rails.configuration.thumbnail_size} #{file.path}#{Rails.configuration.thumbnail_extension}"

@@ -9,9 +9,7 @@ class ReviewsController < ApplicationController
     end
     
     @review = Review.new(review_params)
-    
     @review.user = current_user
-    
     @review.save
     
     respond_with @review

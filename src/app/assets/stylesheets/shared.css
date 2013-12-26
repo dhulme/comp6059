@@ -24,3 +24,8 @@ body {
 .edit-category-button:hover {
   cursor: pointer;
 }
+
+/* Overriding bootstrap styling */
+.label {
+  font-size: 100%;
+}
