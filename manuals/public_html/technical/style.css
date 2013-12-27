@@ -31,6 +31,10 @@ table, td, tr, th {
   padding: 4px;
 }
 
+table .left-align {
+  text-align: left;
+}
+
 .db-table {
   border: 1px solid;
   display: inline-table;
@@ -86,6 +90,10 @@ pre .symbol {
 
 pre .comment {
   color: #009900;
+}
+
+pre .string {
+  color: #CE7B00;
 }
 
 .full-width {

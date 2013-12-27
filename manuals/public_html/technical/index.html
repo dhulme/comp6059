@@ -160,6 +160,20 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
           <figcaption>Screenshot showing a template being edited by an administrator</figcaption>
         </figure>
         
+        <p>The code snippet below shows the controller method for deleting a
+          template. See <code>/app/controllers/templates_controller.rb</code>.</p>
+        
+        <pre>
+<span class="keyword">def</span> destroy
+  <span class="comment"># Only delete if admin</span>
+  <span class="keyword">if</span> current_user.admin?
+    <span class="instance-var">@template</span> = <strong>Template</strong>.find(params[<span class="symbol">:id</span>]).destroy
+
+    <strong>render</strong> status: 200, json: true
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+        </pre>
+        
         
         <h3>Review System</h3>
         <blockquote>
@@ -380,6 +394,21 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
           to handle sessions and user authentication. An <code>admin</code> field
           was added to the User model to store if the user was an administrator.</p>
         
+        <p>The code below from <code>/db/migrate/20131029132534_create_users.rb</code>
+          shows the database schema for the users table, before
+          the additional devise fields are added.</p>
+        
+        <pre>
+<span class="keyword">def</span> change
+  <strong>create_table</strong> <span class="symbol">:users</span> <span class="keyword">do</span> |t|
+    t.string <span class="symbol">:first_name</span>
+    t.string <span class="symbol">:last_name</span>
+    t.boolean <span class="symbol">:admin</span>, default: false
+    t.timestamps
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+        </pre>
+        
         <h3>Data Integrity</h3>
         <blockquote>
           <p>Data integrity and consistency. Database constraints, triggers, referential integrity, prepared statements, transactions. BLOBs. Database exception handling.</p>
@@ -387,11 +416,88 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
         
         <p>Active Record maintained data integrity and managed all interactions
           with the database.</p>
+        
+        
+        <h3>JavaScript and AJAX</h3>
+        <p>The system makes good use of JavaScript and AJAX. Many of the buttons
+          throughout the site use a combination of these technologies to carry out
+          their actions. The snippet below from <code>/app/assets/javascripts/show.js</code>
+          shows the action taken when the 'Download' button is clicked. An AJAX
+          call is made to the server to see if the download counter should be increased
+          or not.</p>
+        
+        <p>The use of these technologies allowed for the instant updates to pages,
+          without the user needing to refresh.</p>
+        <pre>
+<span class="comment">// Download button</span>
+$(<span class="string">'#downloadButton'</span>).click(<span class="keyword">function</span>(){
+  $.post(<span class="string">'/downloads'</span>, {
+    templateId: id
+  }, <span class="keyword">function</span>(increaseCounter) {
+    <span class="keyword">if</span> (increaseCounter) {
+      numDownloads++;
+      $(<span class="string">'#numDownloadsSpan'</span>).html(getDownloadsText(numDownloads));
+      $(<span class="string">'#addReviewButton'</span>).prop(<span class="string">'disabled'</span>, <span class="keyword">false</span>);
+    }
+  });
+});
+        </pre>
       </div>
       
       <div class="content">
         <h2>Code overview</h2>
-        Table of files and lines of code
+        <p>The table below shows all the source files that were either written,
+          or edited as part of Easy Design. The total lines of code for the project
+          was 997, just under the 1000 lines limit.</p>
+        
+        <table>
+          <tr>
+            <th>Language</th>
+            <th>Filename</th>
+            <th>Blank</th>
+            <th>Comment</th>
+            <th>Code</th>
+          </tr>
+          <tr><td>eRuby</td><td class="left-align">src\app\views\templates\index.html.erb</td><td>8</td><td>0</td><td>89</td></tr>
+          <tr><td>eRuby</td><td class="left-align">src\app\views\layouts\application.html.erb</td><td>3</td><td>0</td><td>63</td></tr>
+          <tr><td>eRuby</td><td class="left-align">src\app\views\templates\show.html.erb</td><td>9</td><td>0</td><td>56</td></tr>
+          <tr><td>eRuby</td><td class="left-align">src\app\views\categories\index.html.erb</td><td>3</td><td>0</td><td>32</td></tr>
+          <tr><td>eRuby</td><td class="left-align">src\app\views\pages\home.html.erb</td><td>3</td><td>0</td><td>30</td></tr>
+          <tr><td>eRuby</td><td class="left-align">src\app\views\devise\shared\_links.erb</td><td>5</td><td>0</td><td>22</td></tr>
+          <tr><td>eRuby</td><td class="left-align">src\app\views\devise\registrations\edit.html.erb</td><td>9</td><td>0</td><td>21</td></tr>
+          <tr><td>eRuby</td><td class="left-align">src\app\views\templates\new.html.erb</td><td>4</td><td>0</td><td>21</td></tr>
+          <tr><td>eRuby</td><td class="left-align">src\app\views\devise\sessions\new.html.erb</td><td>5</td><td>0</td><td>21</td></tr>
+          <tr><td>eRuby</td><td class="left-align">src\app\views\devise\registrations\new.html.erb</td><td>8</td><td>0</td><td>19</td></tr>
+          <tr><td>eRuby</td><td class="left-align">src\app\views\templates\feed.atom.builder</td><td>4</td><td>0</td><td>16</td></tr>
+          <tr><td>JavaScript</td><td class="left-align">src\app\assets\javascripts\show.js</td><td>13</td><td>13</td><td>97</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\app\controllers\templates_controller.rb</td><td>25</td><td>11</td><td>80</td></tr>
+          <tr><td>JavaScript</td><td class="left-align">src\app\assets\javascripts\index.js</td><td>11</td><td>5</td><td>54</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\app\models\template.rb</td><td>13</td><td>0</td><td>47</td></tr>
+          <tr><td>JavaScript</td><td class="left-align">src\app\assets\javascripts\categories.js</td><td>5</td><td>2</td><td>28</td></tr>
+          <tr><td>CSS</td><td class="left-align">src\app\assets\stylesheets\shared.css</td><td>6</td><td>1</td><td>24</td></tr>
+          <tr><td>CSS</td><td class="left-align">src\app\assets\stylesheets\show.css</td><td>7</td><td>0</td><td>24</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\app\controllers\pages_controller.rb</td><td>4</td><td>4</td><td>23</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\app\controllers\categories_controller.rb</td><td>6</td><td>0</td><td>22</td></tr>
+          <tr><td>JavaScript</td><td class="left-align">src\app\assets\javascripts\shared.js</td><td>4</td><td>4</td><td>22</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\db\migrate\20131029132630_add_devise_to_users.rb</td><td>9</td><td>19</td><td>21</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\app\models\review.rb</td><td>2</td><td>0</td><td>18</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\app\controllers\reviews_controller.rb</td><td>4</td><td>1</td><td>17</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\app\controllers\application_controller.rb</td><td>3</td><td>2</td><td>17</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\config\routes.rb</td><td>5</td><td>4</td><td>15</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\db\migrate\20131014194659_create_templates.rb</td><td>2</td><td>0</td><td>12</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\app\controllers\downloads_controller.rb</td><td>3</td><td>1</td><td>11</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\config\application.rb</td><td>4</td><td>2</td><td>11</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\db\migrate\20131021084225_create_reviews.rb</td><td>2</td><td>0</td><td>11</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\db\migrate\20131029132534_create_users.rb</td><td>0</td><td>0</td><td>10</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\db\migrate\20131106151601_create_downloads.rb</td><td>1</td><td>0</td><td>9</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\app\models\user.rb</td><td>2</td><td>2</td><td>8</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\db\migrate\20131017105207_create_categories.rb</td><td>1</td><td>0</td><td>8</td></tr>
+          <tr><td>CSS</td><td class="left-align">src\app\assets\stylesheets\index.css</td><td>1</td><td>0</td><td>6</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\app\indices\template_index.rb</td><td>1</td><td>2</td><td>5</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\app\models\download.rb</td><td>0</td><td>0</td><td>4</td></tr>
+          <tr><td>Ruby</td><td class="left-align">src\app\models\category.rb</td><td>0</td><td>0</td><td>3</td></tr>
+          <tr><td></td><td></td><td><strong>195</strong></td><td><strong>73</strong></td><td><strong>997</strong></td></tr>
+        </table>
       </div>
       
       <div class="content">
