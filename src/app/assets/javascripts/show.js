@@ -69,8 +69,7 @@ $(function() {
         + date.getHours() + ':' + date.getMinutes();
       
       // Add review HTML
-      var html = '<blockquote><p>' + res.comment + '</p>' + starsHTML
-        + '<small>AUTHOR, at ' + timeHTML + '</small></blockquote>';
+      var html = '<blockquote><p>' + res.comment + '</p>' + starsHTML + '<small>AUTHOR, at ' + timeHTML + '</small></blockquote>';
 
       $('#reviews').prepend(html);
     });

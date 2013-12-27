@@ -7,9 +7,7 @@
       <% first = true %>
       <% @categories.each do |category| %>
         <li class="category" data-category-id="<%= category.id %>">
-          <a href="#">
-            <%= category.name %>
-          </a>
+          <a href="#"><%= category.name %></a>
         </li>
       <% end %>
     </ul>
@@ -34,8 +32,7 @@
                 <%= link_to(template) do %>
                   <h4 class="media-heading"><%= template.title %></h4>
                 <% end %>
-                <p><%= template.description %><br>
-                  <span class="gray"><%= template.downloads_text %></span></p>
+                <p><%= template.description %><br><span class="gray"><%= template.downloads_text %></span></p>
               </div>
             </div>
           <% end %>    
@@ -57,10 +54,7 @@
                 <%= link_to(template) do %>
                   <h4 class="media-heading"><%= template.title %></h4>
                 <% end %>
-                <p>
-                  <%= template.description %><br>
-                  <span class="gray"><%=raw Review.first.stars_html template.average_rating %></span>
-                </p>
+                <p><%= template.description %><br><span class="gray"><%=raw Review.first.stars_html template.average_rating %></span></p>
               </div>
             </div>
           <% end %>  
@@ -82,8 +76,7 @@
                 <%= link_to(template) do %>
                   <h4 class="media-heading"><%= template.title %></h4>
                 <% end %>
-                <p><%= template.description %><br>
-                  <span class="gray"><%= template.created_at_pretty %></span></p>
+                <p><%= template.description %><br><span class="gray"><%= template.created_at_pretty %></span></p>
               </div>
             </div>
           <% end %>    
@@ -94,18 +87,11 @@
     <div id="searchResultsDiv" class="category hidden">
       <h3 style="margin-top: 0;">Search results</h3>
       <span class="gray">Results for '<span id="resultsForSpan"></span>'</span>
-      <div id="searchResults">
-        
-      </div>
+      <div id="searchResults"></div>
     </div>
   </div>
 </div>
 
-<% # Do auto search if given query string %>
-<% if @search %>
-  <script>
-    $(function() {
-      search("<%= @search %>");
-    });
-  </script>
+<% if @search # Do auto search if given query string %>
+  <script>$(function(){search("<%= @search %>");});</script>
 <% end %>

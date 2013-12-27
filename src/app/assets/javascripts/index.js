@@ -41,9 +41,7 @@ $(function() {
 });
 
 function search(term) {
-  $.getJSON('/search', {
-    term: term
-  }, function(templates) {
+  $.getJSON('/search', {term: term}, function(templates) {
     // Add templates to search results div
     var html = '';
     templates.forEach(function(template) {
@@ -61,8 +59,7 @@ function search(term) {
 
 function generateMediaHTML(template) {
   var createdAt = new Date(template.created_at);
-  var timeHTML = createdAt.getDate() + ' ' + createdAt.getShortMonthName() + ' '
-        + createdAt.getHours() + ':' + createdAt.getMinutes();
+  var timeHTML = createdAt.getDate() + ' ' + createdAt.getShortMonthName() + ' ' + createdAt.getHours() + ':' + createdAt.getMinutes();
 
   return '<div class="media">'
     + '<a class="pull-left" href="/templates/' + template.id + '">'

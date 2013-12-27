@@ -20,8 +20,7 @@
   <% @recommended.each do |template| %>
     <div class="media">
       <%= link_to(template, class: 'pull-left') do %>
-        <%= image_tag(template.image_path, class: 'media-object',
-          alt: template.title, width: '100') %>
+        <%= image_tag(template.image_path, class: 'media-object', alt: template.title, width: '100') %>
       <% end %>
       <div class="media-body">
         <%= link_to(template) do %>

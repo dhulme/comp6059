@@ -5,9 +5,7 @@
 <div class="row">
   <div class="col-md-4">
     <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Existing categories</h3>
-      </div>
+      <div class="panel-heading"><h3 class="panel-title">Existing categories</h3></div>
       <div class="panel-body">
         <ul class="list-group">
           <% @categories.each do |category| %>
@@ -21,9 +19,7 @@
     </div>
     
     <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">New category</h3>
-      </div>
+      <div class="panel-heading"><h3 class="panel-title">New category</h3></div>
       <div class="panel-body">
         <%= form_for :category, url: categories_path do |f| %>
           <div class="form-group">
@@ -36,5 +32,4 @@
       </div>
     </div>
   </div>
-  
 </div>

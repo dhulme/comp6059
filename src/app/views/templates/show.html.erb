@@ -9,10 +9,7 @@
   <div>
     <h1 id="templateTitle"><%= @template.title %></h1>
     <h4 id="templateDescription"><%= @template.description %></h4>
-    <p class="gray">
-      <%= @creator.full_name %><br>
-      <%= @category.name %><br>
-    </p>
+    <p class="gray"><%= @creator.full_name %><br><%= @category.name %><br></p>
     
     <span class="gray" id="numDownloadsSpan"><%= @template.downloads_text %></span><br>
     
@@ -39,8 +36,7 @@
     <% end %>
       
     <div id="addReviewDiv" class="hidden">
-      <div class="form-group stars">
-      </div>
+      <div class="form-group stars"></div>
       <textarea id="commentTextarea" class="form-group form-control" placeholder="Enter review here"></textarea>
       <button id="createReviewButton" class="btn btn-default">Add review</button>
     </div>
@@ -49,17 +45,15 @@
       <% @reviews.each do |review| %>
         <blockquote>
           <p><%= review.comment %></p>
-          <div>
-            <%=raw review.stars_html %>
-          </div>
+          <div><%=raw review.stars_html %></div>
           <small>
-          
-          <% if current_user == review.user %>
-            You
-          <% else %>
-            <%= review.user.full_name %>
-          <% end %>
-          , <%= review.created_at_pretty %></small>
+            <% if current_user == review.user %>
+              You
+            <% else %>
+              <%= review.user.full_name %>
+            <% end %>
+            , <%= review.created_at_pretty %>
+          </small>
         </blockquote>
       <% end %>
     </div>
@@ -67,6 +61,5 @@
 </div>
 
 <div class="pull-right">
-  <%= image_tag(@template.preview_path,
-    alt: @template.title, height: '300', id: 'previewImage') %>
+  <%= image_tag(@template.preview_path, alt: @template.title, height: '300', id: 'previewImage') %>
 </div>

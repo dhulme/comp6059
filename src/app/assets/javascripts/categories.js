@@ -27,11 +27,8 @@ $(function() {
       }).done(function(res) {
         categoryName.html(res.name);
         
-        
         editCategoryButton.removeClass('glyphicon-floppy-disk');
         editCategoryButton.addClass('glyphicon-pencil');
-      
-        return;
       });
     }
   });
