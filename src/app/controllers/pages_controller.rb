@@ -6,9 +6,9 @@ class PagesController < ApplicationController
       # Get users downloads
       Download.where(user_id: current_user.id).each do |download|
         # Other users who've downloaded that template
-        Download.where('template_id = ? AND user_id != ?', download.template_id, download.user_id) do |download|
+        Download.where('template_id = ? AND user_id != ?', download.template_id, download.user_id).each do |download|
           # Get what the other users downloaded
-          Download.where(user_id: download.user_id) do |download|
+          Download.where(user_id: download.user_id).each do |download|
             @recommended << Template.find(download.template_id)
           end
         end

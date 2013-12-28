@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 20131106151601) do
   create_table "templates", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.decimal  "price",       precision: 10, scale: 0
     t.string   "filename"
     t.integer  "category_id"
     t.integer  "user_id"
