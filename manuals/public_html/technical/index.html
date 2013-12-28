@@ -237,8 +237,30 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
 <span class="keyword">end</span>
         </pre>
         
-        <p></p>
+        <p>The reviewing system contains advanced JavaScript. When a user clicks
+        'Add review' they can enter a textual review, and rate the item by
+        clicking on the number of stars they feel the template deserves. When they
+        submit their review, the system converts the number of stars selected into
+        an integer value, before sending an HTTP POST request to the server.</p>
         
+        <p>The snippet below shows some of this JavaScript code. See
+          <code>/app/assets/javascripts/show.js</code> for the full source.</p>
+        
+        <pre>
+$(<span class="string">'.star'</span>).click(<span class="keyword">function</span>() {
+  <span class="keyword">var</span> starNumber = $(<span class="keyword">this</span>).data(<span class="string">'star-number'</span>);
+  $(<span class="keyword">this</span>).parent().children().each(<span class="keyword">function</span>(index, star) {
+    $(star).removeClass(<span class="string">'glyphicon-star'</span>);
+    $(star).addClass(<span class="string">'glyphicon-star-empty'</span>);
+
+    <span class="keyword">if</span> (index <= starNumber) {
+      $(star).removeClass(<span class="string">'glyphicon-star-empty'</span>);
+      $(star).addClass(<span class="string">'glyphicon-star'</span>);
+    }
+  });
+  $(<span class="keyword">this</span>).parent().data(<span class="string">'star-total'</span>, starNumber + 1);
+});
+        </pre>
         
         <h3>Template Image Generation</h3>
         <blockquote>
@@ -268,21 +290,15 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
   <strong>system</strong> "convert #{file.path} -resize #{Rails.configuration.thumbnail_size} #{file.path}#{Rails.configuration.thumbnail_extension}"
 <span class="keyword">end</span>
         </pre>
-      
-
-        <h3>Data Import</h3>
-        <blockquote>
-          <p>Inclusion of live data from external sources (eg other web sites) via protocols such as RSS, using XML formatted data</p>
-        </blockquote>
-        <p>Not currently implemented</p>
 
         <h3>Data Export</h3>
         <blockquote>
           <p>Export of internally stored business data for use in external sites, using XML formatted data.</p>
         </blockquote>
 
-        <p>Easy Design has a public ATOM feed of all the templates in the system.
-          This would allow other developers to make use of the templates uploaded
+        <p>Easy Design has a public ATOM feed of all the templates in the system
+          available at <code>/feed</code>.
+          This allows other developers to make use of the templates uploaded
           to Easy Design and include them as part of their own web applications.</p>
         
         <p>The <code>feed</code> method from <code>/app/controllers/templates_controller.rb</code>,
@@ -538,6 +554,21 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
       
       <div class="content">
         <h2>Evaluation</h2>
+        <p>Overall the project went well. The project was completed in time and
+          to a high standard. The initial plan was to submit on December 9th, however
+          due to the Group Design Project requiring more resources than estimated,
+          the project was delayed by several weeks.</p>
+        
+        <p>Using Ruby on Rails as the development platform worked well. The Ruby
+          on Rails web site states that Rails 'lets you write beautiful code
+          by favouring convention over configuration'. This principle was visible
+          throughout development and was very helpful. For example, if no code is
+          placed in the controller, Rails simply renders the view. As well as saving
+          time, it also helped to keep the project within the 1000 lines of code
+          limit set by the specification.</p>
+        
+        <p>Object-Orientated PHP was an alternative development platform. PHP was already familiar to the developer and is often seen as
+          simpler than an MVC framework such as Rails, </p>
       </div>
     </div>
   </body>
