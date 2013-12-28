@@ -64,24 +64,50 @@
       <div class="content">
         <h2>Architecture and Design</h2>
         
+        <h3>Chosen Technologies</h3>
+        <p><a href="http://rubyonrails.org/">Ruby on Rails</a> was chosen as the
+          platform for the system. It was chosen as the developer had an interest
+          to learn Ruby and the Rails framework.</p>
+        
+        <p><a href="http://www.mysql.com/">MySQL</a> was chosen at the Database Management System (DBMS) because of
+          its familiarity to the developer as well as supporting more features and
+          being easier to interface with than a lighter solution such as
+          <a href="http://www.sqlite.org/">SQLite</a>.</p>
+        
+        
         <h3>Entity Relationship Diagram</h3>
         <p>An Entity Relationship Diagram is shown below based on the final
           schema of the database. It shows the different tables in the database
           and their foreign key relations.</p>
-        <img src="erd.png" alt="Entity Relationship Diagram">
+        <figure>
+          <img src="erd.png" alt="Entity Relationship Diagram">
+          <figcaption>Entity Relationship Diagram</figcaption>
+        </figure>
         
         <h3>System Structure</h3>
         <p>The system is structured using the Model–view–controller (MVC) software
           pattern. The diagram below shows the different MVC components.</p>
-        <img src="structure.png" alt="System Structure">
+        <figure>
+          <img src="structure.png" alt="System Structure" class="full-width">
+          <figcaption>System Structure</figcaption>
+        </figure>
+        
+        
+        <h3>Site Map</h3>
+        <p>The Site Map shows the main pages of the site and routes between them.</p>
+        <figure>
+          <img src="site-map.png" alt="Site Map">
+          <figcaption>Site Map</figcaption>
+        </figure>
       </div>
 
       <div class="content">
         <h2>Implemented Features</h2>
-        <p>Below are a list of features that have been implemented in Easy Design,
-          along with a brief explanation and accompanying evidence.</p>
+        <p>This section details the features that have been implemented in Easy Design,
+          along with a brief explanation, the part of the specification the feature
+          meets and accompanying evidence.</p>
         
-        <h3>Template catalogue</h3>
+        <h3>Template Catalogue</h3>
         <blockquote>
           <p>Items (eg products) are stored in a dynamic and editable hierarchy, 
             which can easily be browsed and searched</p>
@@ -108,7 +134,13 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
   <strong>has</strong> created_at, updated_at
 <span class="keyword">end</span>
         </pre>
-          
+         
+        <p>Searching can be done from the 'Discover' page or from the home page.</p>
+        
+        <figure>
+          <img src="search-results.png" alt="Search results screen shot" class="full-width">
+          <figcaption>Screen shot showing the search results page</figcaption>
+        </figure>
           
         <p>Administrators can add or edit categories by visiting <code>/categories</code>.
           The code snippet below shows the <code>create</code> method in
@@ -143,7 +175,10 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
         <p>The full source for the algorithm can be found in the <code>home</code>
           method in <code>/app/controllers/pages_controller.rb</code>.</p>
           
-        
+        <figure>
+          <img src="recommendations.png" alt="Recommendations sreen shot" class="full-width">
+          <figcaption>Screen shot showing templates being recommended to a user</figcaption>
+        </figure>
         
         <h3>Template management</h3>
         <blockquote>
@@ -156,8 +191,8 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
           update or delete a template using the provided buttons.</p>
         
         <figure>
-          <img src="edit-template.png" alt="Edit template screenshot" class="full-width">
-          <figcaption>Screenshot showing a template being edited by an administrator</figcaption>
+          <img src="edit-template.png" alt="Edit template screen shot" class="full-width">
+          <figcaption>Screen shot showing a template being edited by an administrator</figcaption>
         </figure>
         
         <p>The code snippet below shows the controller method for deleting a
@@ -202,7 +237,7 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
 <span class="keyword">end</span>
         </pre>
         
-        
+        <p></p>
         
         
         <h3>Template Image Generation</h3>
@@ -450,6 +485,7 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
           or edited as part of Easy Design. The total lines of code for the project
           was 997, just under the 1000 lines limit.</p>
         
+        <p>The metrics were produced using <a href="http://cloc.sourceforge.net/">CLOC</a>.</p>
         <table>
           <tr>
             <th>Language</th>
