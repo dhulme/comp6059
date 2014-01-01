@@ -35,6 +35,9 @@ class TemplatesController < ApplicationController
     end
     
     @categories = Category.all
+    
+    # Also return all templates
+    @templates = Template.all
   end
   
   def new

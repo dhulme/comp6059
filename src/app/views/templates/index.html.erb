@@ -81,6 +81,24 @@
             </div>
           <% end %>    
         </div>
+        
+        <div>
+          <h3>All</h3>
+          <% @templates.where(category_id: category.id).each do |template| %>
+            <div class="media">
+              <%= link_to(template, class: 'pull-left') do %>
+                <%= image_tag(template.thumbnail_path, class: 'media-object',
+                  alt: template.title) %>
+              <% end %>
+              <div class="media-body">
+                <%= link_to(template) do %>
+                  <h4 class="media-heading"><%= template.title %></h4>
+                <% end %>
+                <p><%= template.description %><br><span class="gray"><%= template.created_at_pretty %></span></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
     <% end %>
     
