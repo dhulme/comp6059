@@ -26,8 +26,7 @@
             <% @popular[category.id].each do |template| %>
               <div class="media">
                 <%= link_to(template, class: 'pull-left') do %>
-                  <%= image_tag(template.thumbnail_path, class: 'media-object',
-                    alt: template.title) %>
+                  <%= image_tag(template.thumbnail_path, class: 'media-object', alt: template.title) %>
                 <% end %>
                 <div class="media-body">
                   <%= link_to(template) do %>
@@ -48,8 +47,7 @@
             <% @rated[category.id].each do |template| %>
               <div class="media">
                 <%= link_to(template, class: 'pull-left') do %>
-                  <%= image_tag(template.thumbnail_path, class: 'media-object',
-                    alt: template.title) %>
+                  <%= image_tag(template.thumbnail_path, class: 'media-object', alt: template.title) %>
                 <% end %>
                 <div class="media-body">
                   <%= link_to(template) do %>
@@ -70,8 +68,7 @@
             <% @newest[category.id].each do |template| %>
               <div class="media">
                 <%= link_to(template, class: 'pull-left') do %>
-                  <%= image_tag(template.thumbnail_path, class: 'media-object',
-                    alt: template.title) %>
+                  <%= image_tag(template.thumbnail_path, class: 'media-object', alt: template.title) %>
                 <% end %>
                 <div class="media-body">
                   <%= link_to(template) do %>
@@ -89,8 +86,7 @@
           <% @templates.where(category_id: category.id).each do |template| %>
             <div class="media">
               <%= link_to(template, class: 'pull-left') do %>
-                <%= image_tag(template.thumbnail_path, class: 'media-object',
-                  alt: template.title) %>
+                <%= image_tag(template.thumbnail_path, class: 'media-object', alt: template.title) %>
               <% end %>
               <div class="media-body">
                 <%= link_to(template) do %>
