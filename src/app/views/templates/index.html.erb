@@ -16,70 +16,72 @@
   <div class="col-md-9">
     <% @categories.each do |category| %>
       <div class="category hidden" data-category-id="<%= category.id %>">
-        <div>
-          <h3 style="margin-top: 0;">Most popular</h3>
-          <% if @popular[category.id].empty? %>
-            <span class="gray">No-one has downloaded anything yet :(</span>
-          <% end %>
-          
-          <% @popular[category.id].each do |template| %>
-            <div class="media">
-              <%= link_to(template, class: 'pull-left') do %>
-                <%= image_tag(template.thumbnail_path, class: 'media-object',
-                  alt: template.title) %>
-              <% end %>
-              <div class="media-body">
-                <%= link_to(template) do %>
-                  <h4 class="media-heading"><%= template.title %></h4>
-                <% end %>
-                <p><%= template.description %><br><span class="gray"><%= template.downloads_text %></span></p>
-              </div>
-            </div>
-          <% end %>    
-        </div>
-        
-        <div>
-          <h3>Highly rated</h3>
-          <% if @rated[category.id].empty? %>
-            <span class="gray">No-one has reviewed anything yet :(</span>
-          <% end %>
-            
-          <% @rated[category.id].each do |template| %>
-            <div class="media">
-              <%= link_to(template, class: 'pull-left') do %>
-                <%= image_tag(template.thumbnail_path, class: 'media-object',
-                  alt: template.title) %>
-              <% end %>
-              <div class="media-body">
-                <%= link_to(template) do %>
-                  <h4 class="media-heading"><%= template.title %></h4>
-                <% end %>
-                <p><%= template.description %><br><span class="gray"><%=raw Review.first.stars_html template.average_rating %></span></p>
-              </div>
-            </div>
-          <% end %>  
-        </div>
+        <div class="panel panel-default panel-body">
+          <div>
+            <h3 style="margin-top: 0;">Most popular</h3>
+            <% if @popular[category.id].empty? %>
+              <span class="gray">No-one has downloaded anything yet :(</span>
+            <% end %>
 
-        <div>
-          <h3>Newest</h3>
-          <% if @newest[category.id].empty? %>
-            <span class="gray">No-one has uploaded any templates yet :(</span>
-          <% end %>
-          
-          <% @newest[category.id].each do |template| %>
-            <div class="media">
-              <%= link_to(template, class: 'pull-left') do %>
-                <%= image_tag(template.thumbnail_path, class: 'media-object',
-                  alt: template.title) %>
-              <% end %>
-              <div class="media-body">
-                <%= link_to(template) do %>
-                  <h4 class="media-heading"><%= template.title %></h4>
+            <% @popular[category.id].each do |template| %>
+              <div class="media">
+                <%= link_to(template, class: 'pull-left') do %>
+                  <%= image_tag(template.thumbnail_path, class: 'media-object',
+                    alt: template.title) %>
                 <% end %>
-                <p><%= template.description %><br><span class="gray"><%= template.created_at_pretty %></span></p>
+                <div class="media-body">
+                  <%= link_to(template) do %>
+                    <h4 class="media-heading"><%= template.title %></h4>
+                  <% end %>
+                  <p><%= template.description %><br><span class="gray"><%= template.downloads_text %></span></p>
+                </div>
               </div>
-            </div>
-          <% end %>    
+            <% end %>    
+          </div>
+
+          <div>
+            <h3>Highly rated</h3>
+            <% if @rated[category.id].empty? %>
+              <span class="gray">No-one has reviewed anything yet :(</span>
+            <% end %>
+
+            <% @rated[category.id].each do |template| %>
+              <div class="media">
+                <%= link_to(template, class: 'pull-left') do %>
+                  <%= image_tag(template.thumbnail_path, class: 'media-object',
+                    alt: template.title) %>
+                <% end %>
+                <div class="media-body">
+                  <%= link_to(template) do %>
+                    <h4 class="media-heading"><%= template.title %></h4>
+                  <% end %>
+                  <p><%= template.description %><br><span class="gray"><%=raw Review.first.stars_html template.average_rating %></span></p>
+                </div>
+              </div>
+            <% end %>  
+          </div>
+
+          <div>
+            <h3>Newest</h3>
+            <% if @newest[category.id].empty? %>
+              <span class="gray">No-one has uploaded any templates yet :(</span>
+            <% end %>
+
+            <% @newest[category.id].each do |template| %>
+              <div class="media">
+                <%= link_to(template, class: 'pull-left') do %>
+                  <%= image_tag(template.thumbnail_path, class: 'media-object',
+                    alt: template.title) %>
+                <% end %>
+                <div class="media-body">
+                  <%= link_to(template) do %>
+                    <h4 class="media-heading"><%= template.title %></h4>
+                  <% end %>
+                  <p><%= template.description %><br><span class="gray"><%= template.created_at_pretty %></span></p>
+                </div>
+              </div>
+            <% end %>    
+          </div>
         </div>
         
         <div>
