@@ -9,7 +9,10 @@ class PagesController < ApplicationController
         Download.where('template_id = ? AND user_id != ?', download.template_id, download.user_id).each do |download|
           # Get what the other users downloaded
           Download.where(user_id: download.user_id).each do |download|
-            @recommended << Template.find(download.template_id)
+            # Only add to recommended if current user hasn't download it
+            unless Download.where(user_id: current_user.id, template_id: download.template_id).exists?
+              @recommended << Template.find(download.template_id)
+            end
           end
         end
       end
