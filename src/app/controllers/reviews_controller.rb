@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   
   def create
     # Check user hasn't already reviewed the template, or not downloaded it
-    @template = Template.find(review_params.template_id)
+    @template = Template.find(review_params[:template_id])
     if @template.has_user_reviewed? current_user or !@template.has_user_downloaded? current_user
       return
     end
