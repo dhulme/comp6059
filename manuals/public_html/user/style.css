@@ -133,11 +133,9 @@ figure {
 }
 
 .demo-video {
-  float: right;
-  width: 48%;
+  width: 100%;
 }
 
 .instructions {
-  float: left;
-  width: 50%;
+
 }
