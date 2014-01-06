@@ -139,3 +139,7 @@ figure {
 .instructions {
 
 }
+
+.play-clip-button, .play-video-button {
+  margin-left: 10px;
+}

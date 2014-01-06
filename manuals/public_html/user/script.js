@@ -41,4 +41,24 @@ $(function() {
   html += '</ul>';
   
   $('#contents').append(html);
+  
+  var timeout = null;
+  // Play buttons
+  $('.play-clip-button').click(function() {
+    window.clearTimeout(timeout);
+    var self = $(this);
+    var video = self.parents('.content').find('video').get(0);
+    video.currentTime = self.data('startTimecode');
+    video.play();
+    var fragmentLength = parseInt(self.data('stopTimecode')) - parseInt(self.data('startTimecode'));
+    timeout = window.setTimeout(function() {
+      video.pause();
+    }, (fragmentLength * 1000) + 1000);
+  });
+  
+  $('.play-video-button').click(function() {
+    var self = $(this);
+    var video = self.parents('.content').find('video').get(0);
+    video.play();
+  });
 });
