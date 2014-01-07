@@ -434,7 +434,17 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
         
         <h4>Accessibility & (X)HTML Validation</h4>
         
-        <p>All HTML and CSS pages were validated through the <a href="http://validator.w3.org/">W3C Markup Validation Service</a>.</p>
+        <p>Accessibility testing was peformed using <a href="http://www.powermapper.com/">PowerMapper</a>'s <a href="http://www.powermapper.com/products/sortsite/checks/accessibility-checks.htm">SortSite</a>, an 
+          accessibility checker and validator. Several changes were made to pages
+          based on recommendations from the service. For example, it was ensured
+          that each page had an HTML <code>title</code> element and specified
+          that the language of the page was English. Some errors such as the lack
+          of privacy and cookie policies were not
+          addressed as the system is a prototype. They would need to be solved
+          if Easy Design was made public.</p>
+        
+        <p>All HTML and CSS pages were validated through the <a href="http://validator.w3.org/">W3C Markup Validation Service</a>
+          and passed.</p>
         
         
         
@@ -454,7 +464,28 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
           <p>Automated validation of entered data.</p>
         </blockquote>
         
-        <p>Not currently implemented.</p>
+        <p>Easy Design implements automatically validates entered data. For example,
+          when uploading a new template Rails checks that all the fields have been
+          supplied. If they have not, the template fails to upload and an error
+          message is displayed. The <code>template_params</code> function below from
+          <code>/controllers/templates_controller.rb</code> shows the logic that
+          ensures all the correct parameters are included in the POST request.</p>
+        
+        <pre>
+<span class="keyword">def</span> template_params
+  <span class="keyword">begin</span>
+    <strong>params</strong>.require(<span class="symbol">:template</span>).permit(<span class="symbol">:title</span>, <span class="symbol">:description</span>, <span class="symbol">:category_id</span>, <span class="symbol">:image</span>)
+
+    <strong>params</strong>[<span class="symbol">:template</span>].require(<span class="symbol">:image</span>)
+    <strong>params</strong>[<span class="symbol">:template</span>].require(<span class="symbol">:title</span>)
+    <strong>params</strong>[<span class="symbol">:template</span>].require(<span class="symbol">:description</span>)
+  <span class="keyword">rescue</span> ActionController::ParameterMissing
+    <span class="keyword">return false</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">return</span> <strong>params</strong>.require(<span class="symbol">:template</span>).permit(<span class="symbol">:title</span>, <span class="symbol">:description</span>, <span class="symbol">:category_id</span>)
+<span class="keyword">end</span>
+        </pre>
         
         <h3>User authentication</h3>
         <blockquote>
