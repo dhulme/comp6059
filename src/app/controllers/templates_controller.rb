@@ -41,10 +41,15 @@ class TemplatesController < ApplicationController
   end
   
   def new
-    
+    @fail = params[:fail]
+    puts @fail
   end
   
   def create
+    unless template_params
+      return redirect_to '/upload?fail=true'
+    end
+    
     @template = Template.new(template_params)
     
     # Set creator
@@ -114,6 +119,16 @@ class TemplatesController < ApplicationController
   
   private
     def template_params
-      params.require(:template).permit(:title, :description, :category_id)
+      begin
+        params.require(:template).permit(:title, :description, :category_id, :image)
+
+        params[:template].require(:image)
+        params[:template].require(:title)
+        params[:template].require(:description)
+      rescue ActionController::ParameterMissing
+        return false
+      end
+      
+      return params.require(:template).permit(:title, :description, :category_id)
     end
 end

@@ -1,5 +1,8 @@
 <% @title = 'Upload' %>
 <h1>Upload</h1>
+<% if @fail %>
+  <h4 style="color: #a94442;">Your template failed to upload. Make sure you complete all fields.</h4>
+<% end %>
 <%= form_for :template, url: templates_path do |f| %>
   <div class="form-group">
     <%= f.label :title %>

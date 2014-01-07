@@ -1,7 +1,13 @@
 <!DOCTYPE html> 
-<html>
+<html lang="en">
 <head>
-  <title><%= @title %></title>
+  <title>
+    <% if @title %>
+      <%= @title %>
+    <% else %>
+      Easy Design
+    <% end %>
+  </title>
   <%= stylesheet_link_tag 'bootstrap.min', 'shared', 'index', 'show' %>
   <%= javascript_include_tag "jquery-2.0.3.min", "bootstrap.min", "bootbox.min.js", "shared", "jquery_ujs" %>
   <%= csrf_meta_tags %>

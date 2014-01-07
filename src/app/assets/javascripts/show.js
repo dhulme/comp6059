@@ -42,6 +42,7 @@ $(function() {
   // Create review button
   $('#createReviewButton').click(function() {
     var starTotal = $(this).siblings('.stars').data('star-total');
+    if (!starTotal) return;
     $.post('/reviews', {
       review: {
         rating: starTotal,
