@@ -82,7 +82,7 @@
           schema of the database. It shows the different tables in the database
           and their foreign key relations.</p>
         <figure>
-          <img src="erd.png" alt="Entity Relationship Diagram">
+          <img src="img/erd.png" alt="Entity Relationship Diagram">
           <figcaption>Entity Relationship Diagram</figcaption>
         </figure>
         
@@ -90,7 +90,7 @@
         <p>The system is structured using the Model–view–controller (MVC) software
           pattern. The diagram below shows the different MVC components.</p>
         <figure>
-          <img src="structure.png" alt="System Structure" class="full-width">
+          <img src="img/structure.png" alt="System Structure" class="full-width">
           <figcaption>System Structure</figcaption>
         </figure>
         
@@ -98,7 +98,7 @@
         <h3>Site Map</h3>
         <p>The Site Map shows the main pages of the site and routes between them.</p>
         <figure>
-          <img src="site-map.png" alt="Site Map">
+          <img src="img/site-map.png" alt="Site Map">
           <figcaption>Site Map</figcaption>
         </figure>
       </div>
@@ -127,9 +127,9 @@
           Sphinx knows what properties of the models to index.</p>
         
         <pre>
-ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class="symbol">:with</span> => <span class="symbol">:active_record</span> <span class="keyword">do</span>
+ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class="symbol">:with</span> =&gt; <span class="symbol">:active_record</span> <span class="keyword">do</span>
   <span class="comment"># Fields</span>
-  <strong>indexes</strong> title, <span class="symbol">:sortable</span> => <span class="keyword">true</span>
+  <strong>indexes</strong> title, <span class="symbol">:sortable</span> =&gt; <span class="keyword">true</span>
   <strong>indexes</strong> description
   
   <span class="comment"># Attributes</span>
@@ -140,7 +140,7 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
         <p>Searching can be done from the 'Discover' page or from the home page.</p>
         
         <figure>
-          <img src="search-results.png" alt="Search results screen shot" class="full-width">
+          <img src="img/search-results.png" alt="Search results screen shot" class="full-width">
           <figcaption>Screen shot showing the search results page</figcaption>
         </figure>
           
@@ -178,7 +178,7 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
           method in <code>/app/controllers/pages_controller.rb</code>.</p>
           
         <figure>
-          <img src="recommendations.png" alt="Recommendations sreen shot" class="full-width">
+          <img src="img/recommendations.png" alt="Recommendations sreen shot" class="full-width">
           <figcaption>Screen shot showing templates being recommended to a user</figcaption>
         </figure>
         
@@ -193,7 +193,7 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
           update or delete a template using the provided buttons.</p>
         
         <figure>
-          <img src="edit-template.png" alt="Edit template screen shot" class="full-width">
+          <img src="img/edit-template.png" alt="Edit template screen shot" class="full-width">
           <figcaption>Screen shot showing a template being edited by an administrator</figcaption>
         </figure>
         
@@ -255,7 +255,7 @@ $(<span class="string">'.star'</span>).click(<span class="keyword">function</spa
     $(star).removeClass(<span class="string">'glyphicon-star'</span>);
     $(star).addClass(<span class="string">'glyphicon-star-empty'</span>);
 
-    <span class="keyword">if</span> (index <= starNumber) {
+    <span class="keyword">if</span> (index &lt;= starNumber) {
       $(star).removeClass(<span class="string">'glyphicon-star-empty'</span>);
       $(star).addClass(<span class="string">'glyphicon-star'</span>);
     }
@@ -314,9 +314,9 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
   <span class="instance-var">@updated</span> = <span class="instance-var">@templates</span>.first.created_at <span class="keyword">unless</span> <span class="instance-var">@templates</span>.empty?
 
   <strong>respond_to</strong> <span class="keyword">do</span> |format|
-    format.atom { <strong>render</strong> <span class="symbol">:layout</span> => <span class="keyword">false</span>}
+    format.atom { <strong>render</strong> <span class="symbol">:layout</span> =&gt; <span class="keyword">false</span>}
 
-    format.rss { <strong>redirect_to</strong> feed_path(<span class="symbol">:format</span> => <span class="symbol">:atom</span>), <span class="symbol">:status</span> => <span class="symbol">:moved_permanently</span> }
+    format.rss { <strong>redirect_to</strong> feed_path(<span class="symbol">:format</span> =&gt; <span class="symbol">:atom</span>), <span class="symbol">:status</span> =&gt; <span class="symbol">:moved_permanently</span> }
   <span class="keyword">end</span>
 <span class="keyword">end</span>
         </pre>
@@ -358,11 +358,11 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
         
         <p>The <a href="https://netbeans.org/">NetBeans IDE</a> with the
           <a href="http://wiki.netbeans.org/Ruby">Ruby plugin</a> was used to
-          develop Easy Design. The screenshot below shows the syntax-highlighting
+          develop Easy Design. The screen shot below shows the syntax-highlighting
           for both HTML and Ruby syntax.</p>
         
         <figure>
-          <img src="netbeans.png" alt="NetBeans IDE" class="full-width">
+          <img src="img/netbeans.png" alt="NetBeans IDE" class="full-width">
           <figcaption>
             NetBeans IDE showing syntax highlighting<br>
             From <code>/app/views/templates/new.html.erb</code>
@@ -378,9 +378,9 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
           web browser. Debugging was provided through the <a href="https://developers.google.com/chrome-developer-tools/">Chrome Developer tools</a>
           and debugging messages provided by Rails.</p>
         
-        <p>The screenshot of the NetBeans IDE also shows form markup generation.
+        <p>The screen shot of the NetBeans IDE also shows form markup generation.
           There was no need to manually write the HTML for the form elements.
-          For example, <code>&lt;%= form_for :template, url: templates_path do |f| &gt;></code>
+          For example, <code>&lt;%= form_for :template, url: templates_path do |f| &gt;</code>
           produces <code>&lt;form accept-charset="UTF-8" action="/templates" enctype="multipart/form-data" method="post"&gt;</code>.</p>
           
           
@@ -414,7 +414,25 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
           <p>Automated unit testing. Scalability and security testing. Accessibility & (X)HTML validation.</p>
         </blockquote>
         
-        <p>First bit not done.</p>
+        <h4>Automated Unit Testing</h4>
+        <p>Some unit testing was carried out on the models to test the creation
+          and deletion of different objects. The snippet below from 
+          <code>/test/models/category_test.rb</code> shows the tests for
+          categories.</p>
+        <pre>
+<span class="keyword">class</span> CategoryTest < ActiveSupport::TestCase
+  <strong>test</strong> <span class="string">'create category'</span> <span class="keyword">do</span>
+    <span class="instance-var">@@category</span> = Category.new(name: <span class="string">'test'</span>)
+    <strong>assert</strong> <span class="instance-var">@@category</span>.save
+  <span class="keyword">end</span>
+  
+  <strong>test</strong> <span class="string">'remove category'</span> <span class="keyword">do</span>
+    <strong>assert</strong> <span class="instance-var">@@category</span>.destroy
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+        </pre>
+        
+        <h4>Accessibility & (X)HTML Validation</h4>
         
         <p>All HTML and CSS pages were validated through the <a href="http://validator.w3.org/">W3C Markup Validation Service</a>.</p>
         
