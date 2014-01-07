@@ -14,40 +14,40 @@
 ActiveRecord::Schema.define(version: 20131106151601) do
 
   create_table "categories", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "downloads", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "template_id"
+    t.integer  "user_id",     null: false
+    t.integer  "template_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "reviews", force: true do |t|
     t.text     "comment"
-    t.integer  "rating"
-    t.integer  "template_id"
-    t.integer  "user_id"
+    t.integer  "rating",      null: false
+    t.integer  "template_id", null: false
+    t.integer  "user_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "templates", force: true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.string   "filename"
-    t.integer  "category_id"
-    t.integer  "user_id"
+    t.string   "title",       null: false
+    t.text     "description", null: false
+    t.string   "filename",    null: false
+    t.integer  "category_id", null: false
+    t.integer  "user_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "first_name",                             null: false
+    t.string   "last_name",                              null: false
     t.boolean  "admin",                  default: false
     t.datetime "created_at"
     t.datetime "updated_at"

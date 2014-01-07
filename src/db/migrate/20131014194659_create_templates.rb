@@ -1,12 +1,12 @@
 class CreateTemplates < ActiveRecord::Migration
   def change
     create_table :templates do |t|
-      t.string :title
-      t.text :description
-      t.string :filename
+      t.string :title, :null => false
+      t.text :description, :null => false
+      t.string :filename, :null => false
       
-      t.references :category
-      t.belongs_to :user
+      t.references :category, :null => false
+      t.belongs_to :user, :null => false
 
       t.timestamps
     end
