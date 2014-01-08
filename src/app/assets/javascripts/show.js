@@ -1,9 +1,7 @@
 $(function() {
   // Download button
   $('#downloadButton').click(function(){
-    $.post('/downloads', {
-      templateId: id
-    }, function(increaseCounter) {
+    $.post('/downloads', { templateId: id }, function(increaseCounter) {
       if (increaseCounter) {
         numDownloads++;
         $('#numDownloadsSpan').html(getDownloadsText(numDownloads));
@@ -66,8 +64,7 @@ $(function() {
       
       // Generate time HTML
       var date = new Date();
-      var timeHTML = date.getDate() + ' ' + date.getShortMonthName() + ' '
-        + date.getHours() + ':' + date.getMinutes();
+      var timeHTML = date.getDate() + ' ' + date.getShortMonthName() + ' ' + date.getHours() + ':' + date.getMinutes();
       
       // Add review HTML
       var html = '<blockquote><p>' + res.comment + '</p>' + starsHTML + '<small>You, at ' + timeHTML + '</small></blockquote>';
@@ -94,12 +91,10 @@ $(function() {
       $.ajax({
         url: window.location.pathname,
         method: 'PUT',
-        data: {
-          template: {
-            title: templateTitleElement.find('input').val(),
-            description: templateDescriptionElement.find('input').val()
-          }
-        }
+        data: { template: {
+          title: templateTitleElement.find('input').val(),
+          description: templateDescriptionElement.find('input').val()
+        }}
       }).done(function(res) {
         templateTitleElement.text(res.title);
         templateDescriptionElement.text(res.description);

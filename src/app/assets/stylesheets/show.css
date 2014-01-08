@@ -1,31 +1,15 @@
-#previewImage {
-  margin-top: 20px;
-}
+#previewImage { margin-top: 20px; }
 
-#downloadButton, #editButton, #deleteButton {
-  margin-top: 10px;
-}
+#downloadButton, #editButton, #deleteButton { margin-top: 10px; }
 
-#reviewsSection {
-  margin-top: 40px;
-}
+#reviewsSection { margin-top: 40px; }
 
-#addReviewDiv {
-  margin-bottom: 10px;
-}
+#addReviewDiv { margin-bottom: 10px; }
 
-#reviews {
-  margin-top: 20px;
-}
+#reviews { margin-top: 20px; }
 
-.stars {
-  font-size: 17px;
-}
+.stars { font-size: 17px; }
 
-.star {
-  margin-right: 3px;
-}
+.star { margin-right: 3px; }
 
-.star:hover {
-  cursor: pointer;
-}
+.star:hover { cursor: pointer; }

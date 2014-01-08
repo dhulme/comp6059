@@ -1,31 +1,17 @@
-body {
-  margin: 30px;
-}
+body { margin: 30px; }
 
-.gray {
-  color: #888;
-}
+.gray { color: #888; }
 
-#signinButton {
-  margin: 8px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
+#signinButton { margin: 8px; padding-top: 5px; padding-bottom: 5px; }
 
 .user-auth-form {
   width: 40%;
   margin: auto;
 }
 
-#userAuthLinks {
-  margin-top: 10px;
-}
+#userAuthLinks { margin-top: 10px; }
 
-.edit-category-button:hover {
-  cursor: pointer;
-}
+.edit-category-button:hover { cursor: pointer; }
 
 /* Overriding bootstrap styling */
-.label {
-  font-size: 100%;
-}
+.label { font-size: 100%; }

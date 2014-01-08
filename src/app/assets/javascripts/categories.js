@@ -19,11 +19,7 @@ $(function() {
       $.ajax({ 
         url: '/categories/' + parent.data('categoryId'),
         method: 'PUT',
-        data: {
-          category: {
-            name: categoryName.find('input').val()
-          }
-        }
+        data: {category: {name: categoryName.find('input').val() }}
       }).done(function(res) {
         categoryName.html(res.name);
         
