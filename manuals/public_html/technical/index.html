@@ -15,7 +15,7 @@
         <h3>David Hulme - dh7g10@soton.ac.uk</h3>
         
         <p>This technical manual will cover the system architecture of Easy Design,
-         explain which features from the specification have been implemented,
+         explain which features from the specification have been implemented
          and the tools, technologies and techniques that have been used throughout
          development.</p>
       </div>
@@ -30,8 +30,6 @@
         <p>Easy Design is a new startup company launching a service to enable
           customers such as charities and organisations to quickly produce well
           designed logos, posters and flyers based on user generated content.</p>
-
-        <p>The site will make money through advertising.</p>
       
         <h3>Implemented User Stories</h3>
         <h4>1. Upload Templates</h4>
@@ -39,28 +37,27 @@
           must first register with the site before being able to upload content.</p>
         
         <h4>2. Discover Templates</h4>
-        <p>Customers can search and browse the site to discover the content
-          they are looking for. They can browse by content type (e.g. logos, posters, flyers)
+        <p>Customers can search and browse the site to discover content. They 
+          can browse by content type (e.g. logos, posters, flyers)
           or by search term.</p>
         <p>Newly uploaded templates, those with a high number of downloads
-          and those with high ratings are displayed on the discover page.</p>
+          and those with high ratings are displayed on the Discover page.</p>
         <p>Templates are also recommended to customers based on their previous 
           downloads.</p>
         
         <h4>3. Download Templates</h4>
         <p>When a customer finds a design they like, they can download a high quality
-          version of the design which they can then edit before printing out or
-          uploading to their own web site.</p>
-        <p>A customer must register with the site to be able to download the design.</p>
+          version of the design which they can then edit for their own use.</p>
+        
+        <p>A customer must register with the site to be able to download designs.</p>
         
         <h4>4. Review Templates</h4>
         <p>When a customer has downloaded a design, they gain permission to rate
-          and review it. The system can then recommend additional
-          content to customer based upon this information.</p>
+          and review it.</p>
         
         <h4>5. System Management</h4>
-        <p>Administrators are able to do additional actions to normal users. They
-          can edit and delete templates as well as add and edit categories.</p>
+        <p>Administrators are able to perform additional actions to normal users such as
+          editing or deleting templates and adding or editing categories.</p>
       </div>
 
       <div class="content">
@@ -68,7 +65,7 @@
         
         <h3>Chosen Technologies</h3>
         <p><a href="http://rubyonrails.org/">Ruby on Rails</a> was chosen as the
-          platform for the system. It was chosen as the developer had an interest
+          development platform for the system because the developer had an interest
           to learn Ruby and the Rails framework.</p>
         
         <p><a href="http://www.mysql.com/">MySQL</a> was chosen at the Database Management System (DBMS) because of
@@ -97,7 +94,7 @@
         
         
         <h3>Site Structure</h3>
-        <p>The Site Map below shows the design of the site but showing the main pages
+        <p>The Site Map below shows the design of the site by showing the main pages
           and the routes between them.</p>
         <figure>
           <img src="img/site-map.png" alt="Site Map">
@@ -107,7 +104,7 @@
 
       <div class="content">
         <h2>Implemented Features</h2>
-        <p>This section details the features that have been implemented in Easy Design,
+        <p>This section details the features that have been implemented in Easy Design
           along with a brief explanation, the part of the specification the feature
           meets and accompanying evidence.</p>
         
@@ -118,10 +115,10 @@
         </blockquote>
         
         <p>Each template in the database is assigned a category. Users can browse
-          templates by category, or search for a template by name or description.</p>
+          templates by category or search for a template by name or description.</p>
         
         <p>Searching is provided using <a href="http://pat.github.io/thinking-sphinx/">Thinking Sphinx</a>,
-          a Ruby library that connects to the <a href="http://sphinxsearch.com/">Sphinx</a>
+          a Ruby gem (library) that connects to the <a href="http://sphinxsearch.com/">Sphinx</a>
           search server.</p>
         
         <p>Thinking Sphinx provides a <code>search</code> method that can be used
@@ -139,7 +136,7 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
 <span class="keyword">end</span>
         </pre>
          
-        <p>Searching can be done from the 'Discover' page or from the home page.</p>
+        <p>Searching can be done from the Discover page or from the home page.</p>
         
         <figure>
           <img src="img/search-results.png" alt="Search results screen shot" class="full-width">
@@ -155,7 +152,7 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
   <span class="instance-var">@category</span> = <strong>Category</strong>.new(category_params)
   <span class="instance-var">@category</span>.save
 
-  <strong>redirect_to</strong> '/categories'
+  <strong>redirect_to</strong> <span class="string">'/categories'</span>
 <span class="keyword">end</span>
         </pre>
         
@@ -165,8 +162,8 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
           <p>a personalised dynamic recommender system</p>
         </blockquote>
         
-        <p>Easy Design provides a recommendation system for users. A list of
-          possible recommendations are shown on the home page. The algorithm
+        <p>Easy Design provides a recommendation system for users through a list of
+          possible recommendations shown on the home page. The algorithm
           works in three steps:</p>
         
         <ol>
@@ -190,7 +187,7 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
         </blockquote>
         
         <p>A list of all templates can be found through <code>/discover</code> or
-          <code>/templates</code>. Individual templates can then be viewed through
+          <code>/templates</code>. Individual templates can be viewed through
           the <code>/templates/{template_id}</code> endpoint. Administrators can
           update or delete a template using the provided buttons.</p>
         
@@ -200,7 +197,7 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
         </figure>
         
         <p>The code snippet below shows the controller method for deleting a
-          template. See <code>/app/controllers/templates_controller.rb</code>.</p>
+          template, see <code>/app/controllers/templates_controller.rb</code>.</p>
         
         <pre>
 <span class="keyword">def</span> destroy
@@ -227,9 +224,9 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
         
         <pre>
 <span class="keyword">def</span> create
-  <span class="comment"># Check user hasn't already reviewed the template</span>
+  <span class="comment"># Check user hasn't already reviewed the template, or not downloaded it</span>
   <span class="instance-var">@template</span> = <strong>Template</strong>.find(params[<span class="symbol">:template_id</span>])
-  <span class="keyword">if</span> <span class="instance-var">@template</span>.has_user_reviewed? current_user
+  <span class="keyword">if</span> <span class="instance-var">@template</span>.has_user_reviewed? current_user <span class="keyword">or</span> !<span class="instance-var">@template</span>.has_user_downloaded? current_user
     <span class="keyword">return</span>
   <span class="keyword">end</span>
 
@@ -242,12 +239,12 @@ ThinkingSphinx::Index.define <span class="symbol">:template</span>, <span class=
         </pre>
         
         <p>The reviewing system contains advanced JavaScript. When a user clicks
-        'Add review' they can enter a textual review, and rate the item by
+        'Add review' they can enter a textual review and rate the item by
         clicking on the number of stars they feel the template deserves. When they
-        submit their review, the system converts the number of stars selected into
-        an integer value, before sending an HTTP POST request to the server.</p>
+        submit their review the system converts the number of selected stars into
+        an integer value before sending an HTTP POST request to the server.</p>
         
-        <p>The snippet below shows some of this JavaScript code. See
+        <p>The snippet below shows some of this JavaScript code, see
           <code>/app/assets/javascripts/show.js</code> for the full source.</p>
         
         <pre>
@@ -274,11 +271,11 @@ $(<span class="string">'.star'</span>).click(<span class="keyword">function</spa
         <p>For each template image uploaded to Easy Design, the system generates
           a preview image and a smaller thumbnail image. The preview image is shown
           on the template page (e.g. <code>/templates/1</code>) and the thumbnail
-          is shown on the discover page. The size of the generated images can be
+          is shown on the Discover page. The size of the generated images can be
           set in <code>/config/application.rb</code>.</p>
         
         <p>The system uses <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a>
-          to generate the preview and thumbnail images. The snippet from
+          to generate the preview and thumbnail images. A snippet from
           the <code>create</code> method in <code>/app/controllers/templates_controller.rb</code>
           below shows the image generation code.</p>
         
@@ -290,8 +287,8 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
 <strong>File</strong>.open(Rails.root.join('public', 'uploads', <span class="instance-var">@template</span>.filename), 'wb') <span class="keyword">do</span> |file|
   <span class="comment"># Create full size file, preview and thumbnail versions</span>
   file.write(uploaded_io.read)
-  <strong>system</strong> "convert #{file.path} -resize #{Rails.configuration.preview_size} #{file.path}#{Rails.configuration.preview_extension}"
-  <strong>system</strong> "convert #{file.path} -resize #{Rails.configuration.thumbnail_size} #{file.path}#{Rails.configuration.thumbnail_extension}"
+  <strong>system</strong> <span class="string">"convert #{file.path} -resize #{Rails.configuration.preview_size} #{file.path}#{Rails.configuration.preview_extension}"</span>
+  <strong>system</strong> <span class="string">"convert #{file.path} -resize #{Rails.configuration.thumbnail_size} #{file.path}#{Rails.configuration.thumbnail_extension}"</span>
 <span class="keyword">end</span>
         </pre>
 
@@ -331,18 +328,18 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
         <p><a href="http://getbootstrap.com/">Twitter Bootstrap</a> has been used
           throughout the site to give a consistent and professional look and feel.
           Individual stylesheets have been used for the different sections of the
-          site, to prevent the browser requesting unnecessary styles.</p>
+          site to prevent the browser requesting unnecessary styles.</p>
         
-        <p>The site menu is displayed in the top navigation bar, and the login
+        <p>The site menu is displayed in the top navigation bar and the login
           status to the right of the navigation bar. Breadcrumbs are not required
           because the only nested navigation occurs when viewing a template.</p>
         
-        <p><code>multipart/form-data</code> was used when in the upload form. The code
+        <p><code>multipart/form-data</code> is used in the upload form. The code
           snippet below shows the HTML that is generated by the form found in 
           <code>/app/views/templates/new.html.erb</code>.</p>
         
         <pre>
-&lt;form accept-charset="UTF-8" action="/templates" enctype="multipart/form-data" method="post"&gt;
+<span class="keyword">&lt;form</span> <span class="instance-var">accept-charset=</span><span class="string">"UTF-8"</span> <span class="instance-var">action=</span><span class="string">"/templates"</span> <span class="instance-var">enctype=</span><span class="string">"multipart/form-data"</span> <span class="instance-var">method=</span><span class="string">"post"</span><span class="keyword">&gt;</span>
         </pre>
       </div>
 
@@ -372,7 +369,7 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
         </figure>
         
         <p>Database administration was provided through the high level <a href="http://guides.rubyonrails.org/active_record_querying.html">
-          Active Record Query Interface</a>, and at a lower level through 
+          Active Record Query Interface</a> and at a lower level through 
           <a href="http://www.heidisql.com/">HeidiSQL</a>. Active Record also
           provided object relational mapping and database/schema generation.</p>
         
@@ -403,7 +400,7 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
           </li>
           <li>Client side
             <ul>
-              <li><a href="http://jquery.com/">jQuery</a> - To make interaction with the DOM easier</li>
+              <li><a href="http://jquery.com/">jQuery</a> - Make interaction with the DOM easier</li>
               <li><a href="http://getbootstrap.com/">Twitter Bootstrap</a> - Provide a look and feel</li>
               <li><a href="http://bootboxjs.com/">Bootbox.js</a> - Make using Twitter Bootstrap modals easier</li>
             </ul>
@@ -455,7 +452,7 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
           <p>Clear separation of layers or tiers (eg MVC); maintainable code. Enterprise / web architecture patterns.</p>
         </blockquote>
         
-        <p>Through using Rails, the Model-view-controller (MVC) software pattern was used. I strove
+        <p>Rails forces developers to use the Model-view-controller (MVC) software pattern. I strove
           to write well-designed code that would be readable, extensible and
           maintainable.</p>
         
@@ -466,8 +463,8 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
           <p>Automated validation of entered data.</p>
         </blockquote>
         
-        <p>Easy Design implements automatically validates entered data. For example,
-          when uploading a new template Rails checks that all the fields have been
+        <p>Easy Design automatically validates entered data. For example,
+          when uploading a new template, Rails checks that all the fields have been
           supplied. If they have not, the template fails to upload and an error
           message is displayed. The <code>template_params</code> function below from
           <code>/controllers/templates_controller.rb</code> shows the logic that
@@ -505,9 +502,9 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
         <pre>
 <span class="keyword">def</span> change
   <strong>create_table</strong> <span class="symbol">:users</span> <span class="keyword">do</span> |t|
-    t.string <span class="symbol">:first_name</span>
-    t.string <span class="symbol">:last_name</span>
-    t.boolean <span class="symbol">:admin</span>, default: false
+    t.string <span class="symbol">:first_name</span>, <span class="symbol">:null</span> => <span class="keyword">false</span>
+    t.string <span class="symbol">:last_name</span>, <span class="symbol">:null</span> => <span class="keyword">false</span>
+    t.boolean <span class="symbol">:admin</span>, default: <span class="keyword">false</span>
     t.timestamps
   <span class="keyword">end</span>
 <span class="keyword">end</span>
@@ -522,27 +519,23 @@ uploaded_io = params[<span class="symbol">:template</span>][<span class="symbol"
           with the database.</p>
         
         <h3>HTML5</h3>
-        <p>Parts of HTML5 have been used in the system such as the new <code>DOCTYPE</code>
+        <p>Parts of HTML5 have been used in the system such as the HTML5 <code>DOCTYPE</code>
           declaration, the absence of the <code>type</code> attribute in the
           <code>script</code> tag and the use of the <code>video</code> and 
           <code>source</code> tags in the user manual, see snippet below.</p>
         <pre>
-&lt;video class="demo-video" controls&gt;
-  &lt;source src="video/discover.mp4" type="video/mp4"&gt;
-  &lt;source src="video/discover.webm" type="video/webm"&gt;
-&lt;/video&gt;
+<span class="keyword">&lt;video</span> <span class="instance-var">class=</span><span class="string">"demo-video"</span> <span class="instance-var">controls</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;source</span> <span class="instance-var">src=</span><span class="string">"video/discover.mp4"</span> <span class="instance-var">type=</span><span class="string">"video/mp4"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;source</span> <span class="instance-var">src=</span><span class="string">"video/discover.webm"</span> <span class="instance-var">type=</span><span class="string">"video/webm"</span><span class="keyword">&gt;</span>
+<span class="keyword">&lt;/video&gt;</span>
         </pre>
         
         <h3>JavaScript and AJAX</h3>
-        <p>The system makes good use of JavaScript and AJAX. Many of the buttons
-          throughout the site use a combination of these technologies to carry out
-          their actions. The snippet below from <code>/app/assets/javascripts/show.js</code>
-          shows the action taken when the 'Download' button is clicked. An AJAX
+        <p>The system makes excellent use of JavaScript and AJAX, allowing for
+          instant updates to pages. The snippet below from <code>/app/assets/javascripts/show.js</code>
+          shows the action taken when the button to download a template is clicked. An AJAX
           call is made to the server to see if the download counter should be increased
           or not.</p>
-        
-        <p>The use of these technologies allowed for the instant updates to pages,
-          without the user needing to refresh.</p>
         <pre>
 <span class="comment">// Download button</span>
 $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">function</span>(){
@@ -562,9 +555,8 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
         <blockquote>
           <p>Video capture.</p>
         </blockquote>
-        <p>Video capture was used in the user manual to help explain and illustrate
-          the functionality of Easy Design. <a href="http://camstudio.org/">CamStudio</a>
-          was used to capture video from the web browser.</p>
+        <p>Video capture, using <a href="http://camstudio.org/">CamStudio</a>, was used in the user manual to help explain and illustrate
+          the functionality of Easy Design.</p>
       </div>
       
       <div class="content">
@@ -633,30 +625,30 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
       
       <div class="content">
         <h2>Evaluation</h2>
-        <p>Overall the project went well. The project was completed in time and
+        <p>Overall the project was a success. It was completed in time and
           to a high standard. The initial plan was to submit on December 9th, however
           due to the Group Design Project requiring more resources than estimated,
           the project was delayed by several weeks.</p>
         
         <h3>Development Platform</h3>
-        <p>Using Ruby on Rails as the development platform worked well. The Ruby
-          on Rails web site states that Rails 'lets you write beautiful code
+        <p>Using <a href="http://rubyonrails.org/">Ruby on Rails</a> as the development platform worked well. The <a href="http://rubyonrails.org/">Ruby
+          on Rails web site</a> states that Rails 'lets you write beautiful code
           by favouring convention over configuration'. This principle was visible
           throughout development and was very helpful. For example, if no code is
           placed in the controller, Rails simply renders the view. As well as saving
           time, it also helped to keep the project within the 1000 lines of code
           limit set by the specification.</p>
         
-        <p>Object-Orientated PHP was an alternative development platform. Whilst
+        <p>Object-Orientated <a href="http://www.php.net/">PHP</a> was an alternative development platform. Whilst
           it was familiar to the developer and is often seen as simpler than an 
           MVC framework such as Rails, the developer was keen to learn a new
           technology.</p>
         
         <h3>Database Management System and Database Design</h3>
-        <p>SQLite was originally used at the DBMS, however it did not interface
-          well with the Sphinx search engine. Therefore MySQL was used instead
-          as it interfaced better with Sphinx as well as being familiar to the
-          developer and supporting more features, as mentioned in <a href="#ChosenTechnologies">Chosen Technologies</a>.</p>
+        <p><a href="http://www.sqlite.org/">SQLite</a> was originally used at the DBMS, however it did not interface
+          well with the Sphinx search engine. <a href="http://www.mysql.com/">MySQL</a> was chosen as a replacement
+          because it interfaced better with <a href="http://sphinxsearch.com/">Sphinx</a>, was familiar to the
+          developer and supported more features, as mentioned in <a href="#ChosenTechnologies">Chosen Technologies</a>.</p>
         
         <p>In addition, more sophisticated database administration solutions exist for MySQL 
           than SQLite. The only drawback of using MySQL was that it was initially
@@ -665,15 +657,15 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
         <p>The database design was produced by using tables to represent real world
           objects in the system. The <a href="#InitialDatabaseDesign">initial design</a>
           represented ratings and comments as separate tables, however during development
-          these tables were merged together into <strong>reviews</strong>, see
+          these tables were merged together into reviews, see
           <a href="#DatabaseDesign">Database Design</a>.</p>
         
         <p>The image files associated
           with the template were initially designed to be stored as a binary large object
-          (BLOB) in the database. In the final system this changed to store them in a directory
-          structure. This enables the different sizes of the image to be created faster as
+          (BLOB) in the database. In the final system this has changed to storing them in a directory
+          structure. This enables different image sizes to be created more quickly as
           it is faster for the image processing to work on files in a directory
-          than accessing the database. Delivering the image files directly to 
+          than accessing the database. In addition, delivering the image files directly to 
           the browser is faster than creating temporary images from the database 
           each time the page is requested.</p>
         
@@ -691,28 +683,28 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
         <h4>Discovering Content</h4>
         <p>The home page and the Discover page help users to access the site's content.
           Recommendations are provided on the home page and a list of the most popular,
-          top rated and newest templates for each category shown on the discover page.
-          Templates can also be discovered using the search bar from both the discover
+          top rated and newest templates for each category shown on the Discover page.
+          Templates can also be found using the search bar from both the Discover
           and home pages. The ease and speed of discovering new content is one of Easy Design's
           greatest strengths.</p>
         
-        <p>The searching feature, provided by the Sphinx search engine is powerful.
-          However, it is limited in that is can only search for templates based
+        <p>The searching feature, provided by the Sphinx search engine is powerful,
+          however it is limited as it can only search for templates based
           on keywords in the title and description. In the same way the browsing
           feature is limited. Although all templates in a category can be browsed
           through, there is no support for pagination or filtering. These features
           would need to be added to the system to help users conduct specific
-          queries - e.g. the 10 most recent uploaded posters.</p>
+          queries, for example the 10 most recent uploaded posters.</p>
         
         <p>The recommendation system is powerful and can help users discover
           templates that are similar to those they like. However currently there
           is no limit to the number of recommendations that can be displayed on the
-          page, or removal of repetitions. In addition, the search algorithm
-          branches the search over three loops and has the execution time could
+          page, or the removal of repetitions. In addition, the search algorithm
+          branches over three loops and the execution time could
           grow rapidly as more templates are downloaded by users.</p>
         
         <p>These missing features were not added to the system due to time constraints
-          and the 100 lines of code limit.</p>
+          and the 1000 lines of code limit.</p>
         
         <h4>Managing Content</h4>
         <p>Easy Design provides a powerful administration system for selected
@@ -720,29 +712,26 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
           The template editing system is intuitive and simple to use, however it
           lacks support for changing the uploaded image. It is also not currently
           possible for a user to edit their own template.</p>
-        
-        <h4>Template Image Generation</h4>
-        <p>Maybe?</p>
-        
        
         <h3>Development Environment</h3>
-        <p>NetBeans was chosen as the IDE because of its excellent support for
-          HTML5 and JavaScript as well as its familiarity to the developer. Instead
-          of an IDE a syntax-highlighting HTML editor such as <a href="http://notepad-plus-plus.org/">Notepad++</a>
-          could have been used. However, an IDE is better suited as it supports features
+        <p><a href="https://netbeans.org/">NetBeans</a> was chosen as the IDE because of its excellent support for
+          HTML5 and JavaScript, as well as its familiarity to the developer. A
+          syntax-highlighting HTML editor such as <a href="http://notepad-plus-plus.org/">Notepad++</a>
+          could have been used instead, however an IDE is better suited as it supports features
           such as syntax error detection.</p>
         
-        <p>Google Chrome was used as the web browser as it supports advanced 
+        <p><a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a> 
+          was used as the web browser as it supports advanced 
           debugging tools, superior in the developer's opinion to those offered
           by alternative such as <a href="http://www.mozilla.org/en-US/">Firefox</a> and 
           <a href="http://windows.microsoft.com/en-gb/internet-explorer/browser-ie">Internet Explorer</a>.</p>
         
         <h3>External Libraries and Tools</h3>
         <h4>Image Manipulation</h4>
-        <p>ImageMagick was used to generate the different sized versions of each 
+        <p><a href="http://www.imagemagick.org/script/index.php">ImageMagick</a> was used to generate the different sized versions of each 
           template image. <a href="http://www.vips.ecs.soton.ac.uk/">VIPS</a>
           is an alternative image manipulation program that the developer had used
-          before. However, it is far easier to resize an image in ImageMagick through
+          before, however it is far easier to resize an image in ImageMagick through
           the <a href="http://www.imagemagick.org/script/convert.php">convert</a>
           command line function.</p>
         
@@ -753,8 +742,8 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
           of available Ruby search gems because of its support for full-text search.</p>
         
         <h4>User Authentication</h4>
-        <p>Devise was chosen to provide user authentication for the system. It was
-          chosen as it is <a href="https://www.ruby-toolbox.com/categories/rails_authentication">
+        <p>Devise was chosen to provide user authentication for the system because
+          it is <a href="https://www.ruby-toolbox.com/categories/rails_authentication">
           by far the most popular</a> authentication gem.</p>
         
         <h4>JavaScript Library</h4>
@@ -762,7 +751,7 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
           and easier through its HTML document traversal, Ajax handler and other
           features. <a href="http://www.prototypejs.org/">Prototype</a> and 
           <a href="http://mootools.net/">MooTools</a> are other
-          JavaScript libraries that provides similar functionality to jQuery. However,
+          JavaScript libraries that provides similar functionality to jQuery. However
           they are <a href="http://w3techs.com/technologies/overview/javascript_library/all">both less popular</a>
           meaning there is less general support available. In addition, the developer
           was already familiar with jQuery.</p>
