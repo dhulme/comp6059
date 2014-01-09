@@ -8,11 +8,7 @@ function getDownloadsText(numDownloads) {
   if (numDownloads > 1) {
     downloadText = numDownloads + ' downloads';
   } else {
-    if (numDownloads === 1) {
-      downloadText = '1 download';
-    } else {
-      downloadText = 'No downloads';
-    }
+    downloadText = (numDownloads === 1 ? '1 download' : 'No downloads');
   }
   return downloadText;
 }

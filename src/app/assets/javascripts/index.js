@@ -61,8 +61,7 @@ function generateMediaHTML(template) {
   var createdAt = new Date(template.created_at);
   var timeHTML = createdAt.getDate() + ' ' + createdAt.getShortMonthName() + ' ' + createdAt.getHours() + ':' + createdAt.getMinutes();
 
-  return '<div class="media">'
-    + '<a class="pull-left" href="/templates/' + template.id + '">'
+  return '<div class="media">' + '<a class="pull-left" href="/templates/' + template.id + '">'
     + '<img alt="' + template.title + '" class="media-object" src="/uploads/' + template.filename + '" width="100">'
     + '</a><div class="media-body"><a href="/templates/' + template.id + '">'
     + '<h4 class="media-heading">' + template.title + '</h4></a>'

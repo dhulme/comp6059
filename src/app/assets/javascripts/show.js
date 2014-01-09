@@ -42,11 +42,7 @@ $(function() {
     var starTotal = $(this).siblings('.stars').data('star-total');
     if (!starTotal) return;
     $.post('/reviews', {
-      review: {
-        rating: starTotal,
-        comment: $('#commentTextarea').val(),
-        template_id: id
-      }
+      review: { rating: starTotal, comment: $('#commentTextarea').val(), template_id: id }
     }, function(res) {
       // Hide create section
       $('#addReviewDiv').addClass('hidden');
@@ -54,11 +50,7 @@ $(function() {
       // Generate stars HTML
       var starsHTML = '<div>';
       for (var i = 0; i < 5; i++) {
-        if (i < res.rating) {
-          starsHTML += '<span class="glyphicon glyphicon-star"></span>';
-        } else {
-          starsHTML += '<span class="glyphicon glyphicon-star-empty"></span>';
-        }
+        starsHTML += (i < res.rating ? '<span class="glyphicon glyphicon-star"></span>' : '<span class="glyphicon glyphicon-star-empty"></span>');
       }
       starsHTML += '</div>';
       
