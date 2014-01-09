@@ -59,6 +59,7 @@ $(function() {
   $('.play-video-button').click(function() {
     var self = $(this);
     var video = self.parents('.content').find('video').get(0);
+    video.currentTime = 0;
     video.play();
   });
 });

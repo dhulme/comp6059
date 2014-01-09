@@ -658,7 +658,9 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
           objects in the system. The <a href="#InitialDatabaseDesign">initial design</a>
           represented ratings and comments as separate tables, however during development
           these tables were merged together into reviews, see
-          <a href="#DatabaseDesign">Database Design</a>.</p>
+          <a href="#DatabaseDesign">Database Design</a>. A separate downloads
+          table was also added to allow for more detailed information about template
+          downloads to be recorded.</p>
         
         <p>The image files associated
           with the template were initially designed to be stored as a binary large object
@@ -680,19 +682,27 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
           easy for users to navigate. </p>
         
         <h3>Site Functionality</h3>
-        <h4>Discovering Content</h4>
+        <h4>Discover Templates</h4>
         <p>The home page and the Discover page help users to access the site's content.
-          Recommendations are provided on the home page and a list of the most popular,
+          Recommendations are provided on the home page and a list of the three most popular,
           top rated and newest templates for each category shown on the Discover page.
           Templates can also be found using the search bar from both the Discover
           and home pages. The ease and speed of discovering new content is one of Easy Design's
           greatest strengths.</p>
         
-        <p>The searching feature, provided by the Sphinx search engine is powerful,
-          however it is limited as it can only search for templates based
-          on keywords in the title and description. In the same way the browsing
-          feature is limited. Although all templates in a category can be browsed
-          through, there is no support for pagination or filtering. These features
+        <p>These methods of discovering content were designed to help users find
+          the content they want with minimal effort. The highlights from each
+          category, displayed on the Discover page, were key to this and prevented users
+          from needing to read through hundreds of template summaries.</p>
+        
+        <p>The searching feature, provided by the Sphinx search engine is powerful.
+          It allows users to quickly search for templates based on keywords
+          in the title and description. This is also a limitation, as it cannot 
+          search by other fields such as date created.</p>
+        
+        <p>Users can also browse all the templates in a category through the 'All'
+          section in the Discover page. However, there is no support for 
+          pagination or filtering. These features
           would need to be added to the system to help users conduct specific
           queries, for example the 10 most recent uploaded posters.</p>
         
@@ -706,14 +716,37 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
         <p>These missing features were not added to the system due to time constraints
           and the 1000 lines of code limit.</p>
         
-        <h4>Managing Content</h4>
+        <h4>Download Templates</h4>
+        <p>Customers can download high quality versions templates. If they have
+          not downloaded that template before, the downloads counter on the page
+          is increased immediately on the page. If they have already downloaded
+          it, the download counter does not increase. The downloads data is essential
+          to recommendation system and the 'most popular' templates shown on the 
+          Discover page. Originally a simple field was used to count the number
+          of downloads for each template, however in the final implementation a 
+          separate downloads table was made to allow for more detailed records to
+          be kept such as who downloaded the file and when.</p>
+        
+        <h4>Review Templates</h4>
+        <p>Users who have downloaded a template are able to rate and review it.
+          The reviewing system was designed in this way to prevent inaccurate reviews
+          from users who had not used the template. Users were also prevented from
+          leaving multiple reviews for a template to stop one user having a stronger
+          voice than another. The system was designed to make reviewing quick and easy
+          through the use of a clickable star rating and immediate display of the
+          review when submitted. A limitation of the review system is that reviews
+          cannot be filtered or themselves rated by users.</p>
+        
+        <h4>System Management</h4>
         <p>Easy Design provides a powerful administration system for selected
           users to vet the uploaded templates and add or update template categories.
+          It was decided that categories could not be removed as this would cause
+          existing templates in that category to be deleted.
           The template editing system is intuitive and simple to use, however it
           lacks support for changing the uploaded image. It is also not currently
           possible for a user to edit their own template.</p>
        
-        <h3>Development Environment</h3>
+        <h3>Development Tools</h3>
         <p><a href="https://netbeans.org/">NetBeans</a> was chosen as the IDE because of its excellent support for
           HTML5 and JavaScript, as well as its familiarity to the developer. A
           syntax-highlighting HTML editor such as <a href="http://notepad-plus-plus.org/">Notepad++</a>
@@ -736,18 +769,21 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
           command line function.</p>
         
         <h4>Search Engine</h4>
-        <p>The Thinking Sphinx Ruby gem, which uses the Sphinx search engine was
+        <p>The <a href="http://pat.github.io/thinking-sphinx/quickstart.html">Thinking Sphinx</a>
+          Ruby gem, which uses the <a href="http://sphinxsearch.com/">Sphinx</a> search engine was
           chosen to provide the search functionality for Easy Design. It was selected
           from a <a href="https://www.ruby-toolbox.com/categories/rails_search">list</a>
           of available Ruby search gems because of its support for full-text search.</p>
         
         <h4>User Authentication</h4>
-        <p>Devise was chosen to provide user authentication for the system because
+        <p><a href="https://github.com/plataformatec/devise">devise</a> was 
+          chosen to provide user authentication for the system because
           it is <a href="https://www.ruby-toolbox.com/categories/rails_authentication">
           by far the most popular</a> authentication gem.</p>
         
         <h4>JavaScript Library</h4>
-        <p>jQuery was used to make the writing of the client side JavaScript quicker
+        <p><a href="http://jquery.com/">jQuery</a> was used to make the writing 
+          of the client side JavaScript quicker
           and easier through its HTML document traversal, Ajax handler and other
           features. <a href="http://www.prototypejs.org/">Prototype</a> and 
           <a href="http://mootools.net/">MooTools</a> are other
@@ -757,7 +793,8 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
           was already familiar with jQuery.</p>
         
         <h4>UI Framework</h4>
-        <p>Twitter Bootstrap was used as the visual front-end framework. It was
+        <p><a href="http://getbootstrap.com/">Twitter Bootstrap</a> was used 
+          as the visual front-end framework. It was
           chosen because of its familiarity and responsive nature. <a href="http://foundation.zurb.com/">Foundation</a> 
           is another front-end framework that provides similar functionality,
           however it had not been used by the developer. Due to the time that
