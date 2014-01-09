@@ -5,6 +5,7 @@ gem 'mysql2'
 gem 'thinking-sphinx', '~> 3.0.2'
 gem 'devise'
 gem 'bcrypt-ruby', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
+gem 'jquery-rails'
 
 group :doc do
   gem 'sdoc', require: false

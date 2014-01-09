@@ -13,7 +13,7 @@
     
     <span class="gray" id="numDownloadsSpan"><%= @template.downloads_text %></span><br>
     
-    <%= link_to('Download', @template.image_path, download: 'image.jpg', class: 'btn btn-default', id: 'downloadButton') %>
+    <%= link_to('Download', @template.image_path, download: 'image.jpg', class: 'btn btn-default', id: 'downloadButton', disabled: !user_signed_in?) %>
     
     <% if user_signed_in? and current_user.admin? %>
       <br><button class="btn btn-primary" id="editButton">Edit template</button>
