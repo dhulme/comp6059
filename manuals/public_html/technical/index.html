@@ -665,8 +665,8 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
           downloads to be recorded.</p>
         
         <p>The image files associated
-          with the template were initially designed to be stored as a binary large object
-          (BLOB) in the database. In the final system this has changed to storing them in a directory
+          with templates were initially designed to be stored as binary large objects
+          (BLOBs) in the database. In the final system this has changed to storing them in a directory
           structure. This enables different image sizes to be created more quickly as
           it is faster for the image processing to work on files in a directory
           than accessing the database. In addition, delivering the image files directly to 
@@ -687,7 +687,7 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
         <h4>Discover Templates</h4>
         <p>The home page and the Discover page help users to access the site's content.
           Recommendations are provided on the home page and a list of the three most popular,
-          top rated and newest templates for each category shown on the Discover page.
+          top rated and newest templates for each category are shown on the Discover page.
           Templates can also be found using the search bar from both the Discover
           and home pages. The ease and speed of discovering new content is one of Easy Design's
           greatest strengths.</p>
@@ -719,21 +719,21 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
           and the 1000 lines of code limit.</p>
         
         <h4>Download Templates</h4>
-        <p>Customers can download high quality versions templates. If they have
-          not downloaded that template before, the downloads counter on the page
-          is increased immediately on the page. If they have already downloaded
+        <p>Customers can download high quality versions of templates. If they have
+          not downloaded a template before, the downloads counter on the page
+          is increased immediately. If they have already downloaded
           it, the download counter does not increase. The downloads data is essential
-          to recommendation system and the 'most popular' templates shown on the 
+          to the recommendation system and the 'most popular' templates shown on the 
           Discover page. Originally a simple field was used to count the number
           of downloads for each template, however in the final implementation a 
           separate downloads table was made to allow for more detailed records to
-          be kept such as who downloaded the file and when.</p>
+          be kept such as who downloaded the template and when.</p>
         
         <h4>Review Templates</h4>
         <p>Users who have downloaded a template are able to rate and review it.
           The reviewing system was designed in this way to prevent inaccurate reviews
-          from users who had not used the template. Users were also prevented from
-          leaving multiple reviews for a template to stop one user having a stronger
+          from users who had not downloaded the template. Users were also prevented from
+          leaving multiple reviews for a single template to stop one user having a stronger
           voice than another. The system was designed to make reviewing quick and easy
           through the use of a clickable star rating and immediate display of the
           review when submitted. A limitation of the review system is that reviews
@@ -786,7 +786,7 @@ $(<span class="string">'#downloadButton'</span>).click(<span class="keyword">fun
         <h4>JavaScript Library</h4>
         <p><a href="http://jquery.com/">jQuery</a> was used to make the writing 
           of the client side JavaScript quicker
-          and easier through its HTML document traversal, Ajax handler and other
+          and easier through its HTML document traversal, AJAX handler and other
           features. <a href="http://www.prototypejs.org/">Prototype</a> and 
           <a href="http://mootools.net/">MooTools</a> are other
           JavaScript libraries that provides similar functionality to jQuery. However
